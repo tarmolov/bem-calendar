@@ -1,0 +1,29 @@
+.head
+{
+    min-width: 570px;
+    height: 45px;
+    padding-top: 55px;
+
+    background: #F4F4F4;
+    box-shadow: 0px 2px 8px rgba(160,160,160,0.5);
+}
+
+.head__actions
+{
+    padding-left: 50px;
+
+    float: left;
+}
+
+.head__action-item
+{
+    margin-right: 8px;
+}
+
+.head__search
+{
+    width: 200px;
+    padding-right: 50px;
+
+    float: right;
+}

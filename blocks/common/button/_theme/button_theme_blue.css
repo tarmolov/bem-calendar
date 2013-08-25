@@ -1,0 +1,9 @@
+.button_theme_blue
+{
+    padding: 7px 10px;
+
+    background: #0067CD;
+    color: #F5F7F9;
+    border: none;
+    border-radius: 3px;
+}
