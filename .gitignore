@@ -1,0 +1,10 @@
+.bem/tmp
+node_modules/
+pages/*/*.*
+!pages/*/*.bemjson.js
+test/*
+!test/test.html
+!test/mocha.js
+!test/mocha.css
+!test/chai.js
+!test/sinon.js
