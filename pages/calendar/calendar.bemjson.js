@@ -15,12 +15,10 @@ module.exports = {
         ]},
         {block: 'main', content: [
             {block: 'navigation', content: [
-                {elem: 'month-pager', content: [
-                    {block: 'button', mods: {theme: 'shadow'}, content: '◀'},
-                    {elem: 'month-title', content: 'March 2013'},
-                    {block: 'button', mods: {theme: 'shadow'}, content: '►'},
-                    {block: 'button', mods: {theme: 'shadow'}, content: 'Today'}
-                ]}
+                {block: 'button', mods: {theme: 'shadow'}, mix: [{block: 'navigation', elem: 'left'}]},
+                {elem: 'title', content: 'March 2013'},
+                {block: 'button', mods: {theme: 'shadow'}, mix: [{block: 'navigation', elem: 'right'}]},
+                {block: 'button', mods: {theme: 'shadow'}, mix: [{block: 'navigation', elem: 'today'}], content: 'Today'}
             ]},
             {block: 'calendar', content: [
                 {elem: 'row', content: [
