@@ -1,0 +1,21 @@
+.calendar
+{
+    font-size: 12px;
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    color: #999;
+}
+
+.calendar__cell
+{
+    width: 14.3%;
+    height: 130px;
+    padding: 8px;
+
+    vertical-align: top;
+
+    border: 1px solid #999;
+}
