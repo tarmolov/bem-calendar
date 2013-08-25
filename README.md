@@ -25,6 +25,7 @@ configs             Project configs
 blocks              Levels
 blocks/core         Non-visual blocks
 blocks/common       Visual common block for desktop/touch versions
+blocks/vendors      Vendor libraries and helpers
 pages               Pages
 test                Page for building/running tests
 ```
