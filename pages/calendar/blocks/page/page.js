@@ -1,6 +1,6 @@
-modules.require(['app', 'dom'], function (Application, dom) {
+modules.require(['app', 'jquery'], function (Application, $) {
 
-    dom.ready.then(function () {
+    $(function () {
         /*jshint unused:false*/
         var app = new Application();
     });
