@@ -6,9 +6,6 @@ The maintainer of the project is Alexander Tarmolov <tarmolov@gmail.com>.
 
 The project is being developed within community. Maintainer merges pull-requests, fixes critical bugs.
 
-## Codestyle
-See [Yandex Maps codestyle](https://github.yandex-team.ru/maps/maps/blob/master/codestyle.md).
-
 ## Pull-requests
 
 If you fixed or added something useful to the project, you can send pull-request.
