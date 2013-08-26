@@ -59,9 +59,10 @@ module.exports = function (config) {
 
     function getLevels() {
         return [
+            'blocks/vendors/bem-core/common.blocks',
+            'blocks/vendors/bem-core/desktop.blocks',
             'blocks/common',
-            'blocks/core',
-            'blocks/vendors'
+            'blocks/core'
         ].map(config.resolvePath.bind(config));
     }
 

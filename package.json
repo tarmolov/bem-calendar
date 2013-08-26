@@ -1,17 +1,15 @@
 {
     "author": "Alexander Tarmolov <tarmolov@gmail.com>",
     "description": "Simple calendar using bem methodology",
-    "name": "simple-calendar",
+    "name": "hh-calendar",
     "version": "0.0.1",
     "private": true,
     "engines": {
         "node": ">= 0.8.0"
     },
     "dependencies": {
+        "bem-core": "git://github.com/bem/bem-core.git#v1",
         "bh": "0.1.16",
-        "inherit": "2.0.0",
-        "vow": "0.3.10",
-        "vow-fs": "0.2.3",
         "ym": "0.0.9"
     },
     "devDependencies": {
