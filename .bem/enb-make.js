@@ -10,8 +10,8 @@ module.exports = function (config) {
             require('enb-modules/techs/deps-with-modules'),
             [require('enb/techs/browser-js'), {target: '?.browser.js'}],
             [require('enb-modules/techs/prepend-modules'), {source: '?.browser.js', target: '?.modules.js'}],
-            require('bh/techs/bh-server'),
-            [require('bh/techs/bh-client-module'), {target: '?.bh.client.js'}],
+            [require('bh/techs/bh-server'), {jsAttrName: 'data-bem', jsAttrScheme: 'json'}],
+            [require('bh/techs/bh-client-module'), {target: '?.bh.client.js', jsAttrName: 'data-bem', jsAttrScheme: 'json'}],
             [require('enb/techs/file-merge'), {sources: ['?.modules.js', '?.bh.client.js'], target: '?.js'}],
             require('enb/techs/css'),
             require('enb/techs/html-from-bemjson')
@@ -40,9 +40,9 @@ module.exports = function (config) {
             [require('enb/techs/bemdecl-test'), {target: 'test.bemdecl.js'}],
             [require('enb/techs/js-test'), {fileMask: getTestFileMask()}],
             require('enb-modules/techs/deps-with-modules'),
-            [require('enb/techs/js'), {target: '?.pre.js'}],
-            [require('bh/techs/bh-client-module'), {target: '?.bh.client.js'}],
-            [require('enb-modules/techs/prepend-modules'), {source: '?.pre.js', target: '?.modules.js'}],
+            [require('enb/techs/browser-js'), {target: '?.browser.js'}],
+            [require('bh/techs/bh-client-module'), {target: '?.bh.client.js', jsAttrName: 'data-bem', jsAttrScheme: 'json' }],
+            [require('enb-modules/techs/prepend-modules'), {source: '?.browser.js', target: '?.modules.js'}],
             [require('enb/techs/file-merge'), {sources: ['?.modules.js', '?.bh.client.js'], target: '?.js'}],
             [require('enb/techs/file-provider'), {target: 'test.html'}],
             [require('enb/techs/file-provider'), {target: 'mocha.js'}],
@@ -59,10 +59,10 @@ module.exports = function (config) {
 
     function getLevels() {
         return [
-            'blocks/vendors/bem-core/common.blocks',
-            'blocks/vendors/bem-core/desktop.blocks',
-            'blocks/common',
-            'blocks/core'
+            'src/vendors/bem-core/common.blocks',
+            'src/vendors/bem-core/desktop.blocks',
+            'src/blocks',
+            'src/controllers'
         ].map(config.resolvePath.bind(config));
     }
 

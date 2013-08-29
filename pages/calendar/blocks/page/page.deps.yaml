@@ -1,2 +1,13 @@
 - app
 - jquery
+- block: i-bem
+  elem: dom
+  mods:
+    init: auto
+- block: ecma
+  elem:
+    - array
+    - function
+    - json
+    - object
+    - string

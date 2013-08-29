@@ -2,6 +2,7 @@ module.exports = function (bh) {
 
     bh.match('calendar', function (ctx) {
         ctx.tag('table');
+        ctx.js(true);
     });
 
     bh.match('calendar__row', function (ctx) {

@@ -9,7 +9,7 @@
     },
     "dependencies": {
         "bem-core": "git://github.com/bem/bem-core.git#v1",
-        "bh": "0.1.16",
+        "bh": "0.1.19",
         "ym": "0.0.9"
     },
     "devDependencies": {

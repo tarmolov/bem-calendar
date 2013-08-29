@@ -35,6 +35,7 @@ module.exports = function (bh) {
 
     bh.match('page', function (ctx) {
         ctx.tag('body');
+        ctx.js(true);
     });
 
     bh.match('page__html', function (ctx) {

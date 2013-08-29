@@ -1,4 +1,4 @@
-modules.require(['app', 'jquery'], function (Application, $) {
+modules.require(['app', 'jquery', 'i-bem__dom'], function (Application, $) {
 
     $(function () {
         /*jshint unused:false*/
