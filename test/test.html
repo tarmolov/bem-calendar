@@ -30,8 +30,6 @@
 
         <script>
             mocha.setup('bdd');
-            // ymaps removes jsonp callbacks after timeout
-            mocha.globals(['jsonp_yandex_coverage__*']);
             chai.Assertion.includeStack = true;
 
             modules.define('should', function (provide) {
