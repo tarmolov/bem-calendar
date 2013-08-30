@@ -8,14 +8,14 @@
     box-shadow: 0px 2px 8px rgba(160,160,160,0.5);
 }
 
-.head__actions
+.head__toolbar
 {
     padding-left: 50px;
 
     float: left;
 }
 
-.head__action-item
+.head__toolbar .button
 {
     margin-right: 8px;
 }

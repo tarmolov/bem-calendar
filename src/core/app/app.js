@@ -1,9 +1,10 @@
-modules.define('app', ['inherit'], function (provide, inherit) {
+modules.define('app', ['inherit', 'layout'], function (provide, inherit, layout) {
 
     var Application = inherit({
-        __constructor: function () {
-            /*jshint devel:true*/
-            console.log('constructor');
+        __constructor: function (rootBlock) {
+            this._rootBlock = rootBlock;
+            this._layout = layout.create();
+            this._rootBlock.appendView(this._layout);
         }
     });
 

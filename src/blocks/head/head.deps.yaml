@@ -1,0 +1,4 @@
+- search
+- block: button
+  mods:
+    theme: blue
