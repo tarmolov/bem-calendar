@@ -1,5 +1,7 @@
-# Simple calendar
+# BEM Calendar
 This is an assigment for entering Frontend Developer School by [hh.ru](http://hh.ru/locale.do?language=EN).
+
+Project based on [ideas of Nikolas Zakas](http://www.slideshare.net/nzakas/scalable-javascript-application-architecture) and developed using [BEM methodology](http://bem.info).
 
 ## Requirements
   * Minimal knowledge about [BEM](http://bem.info/)
@@ -22,10 +24,10 @@ http://localhost:8080/pages/calendar/calendar.html
 .bem                ENB config for building project
 .git-hooks          Git hooks
 configs             Project configs
-blocks              Levels
-blocks/core         Non-visual blocks
-blocks/common       Visual common block for desktop/touch versions
-blocks/vendors      Vendor libraries and helpers
+src                 Code sources
+src/core            Corea of application
+src/blocks          Visual blocks for building components
+src/vendors         Vendor libraries and helpers
 pages               Pages
 test                Page for building/running tests
 ```
