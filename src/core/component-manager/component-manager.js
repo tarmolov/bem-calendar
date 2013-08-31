@@ -6,7 +6,8 @@ modules.define('component-manager', ['inherit'], function (provide, inherit) {
      */
     provide(inherit({
         __constructor: function () {
-            this._components = {};
+            this._registeredComponents = {};
+            this._runningComponents = {};
         },
 
         /**
@@ -15,7 +16,7 @@ modules.define('component-manager', ['inherit'], function (provide, inherit) {
          * @param {IComponent} component
          */
         register: function (id, component) {
-            this._components[id] = component;
+            this._registeredComponents[id] = component;
         },
 
         /**
@@ -24,7 +25,7 @@ modules.define('component-manager', ['inherit'], function (provide, inherit) {
          * @param {ISandbox} sandbox
          */
         start: function (id, sandbox) {
-            var component = this._get(id);
+            var component = this.getComponent(id);
             if (component && !component.isStarted()) {
                 component.start(sandbox);
             }
@@ -35,9 +36,10 @@ modules.define('component-manager', ['inherit'], function (provide, inherit) {
          * @param {String} id
          */
         stop: function (id) {
-            var component = this._get(id);
+            var component = this.getComponent(id);
             if (component && component.isStarted()) {
                 component.stop();
+                delete this._runningComponents[id];
             }
         },
 
@@ -65,16 +67,8 @@ modules.define('component-manager', ['inherit'], function (provide, inherit) {
          * @param {String} id
          * @return {IComponent} component
          */
-        _get: function (id) {
-            return this._components[id];
-        },
-
-        /**
-         * Returns a number of registered components
-         * @return {Number}
-         */
-        _length: function () {
-            return Object.keys(this._components).length;
+        getComponent: function (id) {
+            return this._runningComponents[id] || this._registeredComponents[id] && new this._registeredComponents[id];;
         },
 
         /**
@@ -83,7 +77,7 @@ modules.define('component-manager', ['inherit'], function (provide, inherit) {
          * @return {Object} context
          */
         _each: function (callback, context) {
-            Object.keys(this._components).forEach(callback, context);
+            Object.keys(this._registeredComponents).forEach(callback, context);
         }
     }));
 

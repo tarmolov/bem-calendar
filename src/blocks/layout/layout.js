@@ -16,7 +16,8 @@ modules.define(
         main
     ) {
 
-    provide(DOM.decl('layout', {}, {
+    provide(DOM.decl('layout', {
+    }, {
         create: function () {
             var html = bh.apply(this.getBEMJSON());
             return DOM.init($(html)).bem(this.getName());

@@ -24,9 +24,10 @@ http://localhost:8080/pages/calendar/calendar.html
 .bem                ENB config for building project
 .git-hooks          Git hooks
 configs             Project configs
-src                 Code sources
-src/core            Corea of application
+src                 Code
 src/blocks          Visual blocks for building components
+src/core            Core of application
+src/components      Widgets
 src/vendors         Vendor libraries and helpers
 pages               Pages
 test                Page for building/running tests

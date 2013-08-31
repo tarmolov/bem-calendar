@@ -5,7 +5,7 @@ modules.define('head', ['i-bem__dom'], function (provide, DOM) {
             return {
                 block: 'head',
                 content: [
-                    {elem: 'toolbar', content: [
+                    {elem: 'toolbar', mix: [{block: 'placeholder', mods: {id: 'toolbar'}}], content: [
                         {block: 'button', mods: {theme: 'blue'}, content: 'Add'},
                         {block: 'button', mods: {theme: 'blue'}, content: 'Update'}
                     ]},
