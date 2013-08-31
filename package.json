@@ -1,9 +1,8 @@
 {
     "author": "Alexander Tarmolov <tarmolov@gmail.com>",
-    "description": "Simple calendar using bem methodology",
-    "name": "hh-calendar",
+    "description": "Simple calendar using BEM methodology",
+    "name": "bem-calendar",
     "version": "0.0.1",
-    "private": true,
     "engines": {
         "node": ">= 0.8.0"
     },
