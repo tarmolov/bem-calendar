@@ -13,13 +13,14 @@ modules.define(
     ) {
 
     provide(inherit(BaseComponent, {
-
-        _id: 'calendar',
-
         start: function (sandbox) {
             this.__base();
-            this._element = sandbox.getDomElement(this._id);
+            this._element = sandbox.getDomElement(this);
             this._element.append(CalendarView.create().domElem);
+        }
+    }, {
+        getName: function () {
+            return 'calendar';
         }
     }));
 

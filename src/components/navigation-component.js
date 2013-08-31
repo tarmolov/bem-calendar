@@ -13,15 +13,16 @@ modules.define(
     ) {
 
     provide(inherit(BaseComponent, {
-
-        _id: 'navigation',
-
         start: function (sandbox) {
             this.__base();
-            this._element = sandbox.getDomElement(this._id);
+            this._element = sandbox.getDomElement(this);
             this._element.append(NavigationView.create({
                 currentDate: sandbox.getModel().get('currentDate')
             }).domElem);
+        }
+    }, {
+        getName: function () {
+            return 'navigation';
         }
     }));
 

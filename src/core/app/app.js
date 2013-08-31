@@ -29,10 +29,10 @@ modules.define(
             this._model = new Model(this._getInitialData());
             var componentManager = this._componentManager = new ComponentManager();
 
-            componentManager.register('toolbar', ToolBar);
-            componentManager.register('search', Search);
-            componentManager.register('navigation', Navigation);
-            componentManager.register('calendar', Calendar);
+            componentManager.register(ToolBar.getName(), ToolBar);
+            componentManager.register(Search.getName(), Search);
+            componentManager.register(Navigation.getName(), Navigation);
+            componentManager.register(Calendar.getName(), Calendar);
             componentManager.startAll(this._sandbox);
         },
 

@@ -5,7 +5,8 @@ modules.define('sandbox', ['inherit', 'events'], function (provide, inherit, eve
             this._app = app;
         },
 
-        getDomElement: function (id) {
+        getDomElement: function (component) {
+            var id = component.__self.getName();
             return this._app.getPlaceholderElement(id);
         },
 
