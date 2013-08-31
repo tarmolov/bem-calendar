@@ -7,3 +7,8 @@
     border: none;
     border-radius: 3px;
 }
+
+.button_theme_blue.button_pressed_yes
+{
+    box-shadow: inset 0 2px 5px #1e3e81;
+}
