@@ -19,7 +19,9 @@ modules.define(
         start: function (sandbox) {
             this.__base();
             this._element = sandbox.getDomElement(this._id);
-            this._element.append(NavigationView.create().domElem);
+            this._element.append(NavigationView.create({
+                currentDate: sandbox.getModel().get('currentDate')
+            }).domElem);
         }
     }));
 

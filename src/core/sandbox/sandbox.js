@@ -7,6 +7,10 @@ modules.define('sandbox', ['inherit', 'events'], function (provide, inherit, eve
 
         getDomElement: function (id) {
             return this._app.getPlaceholderElement(id);
+        },
+
+        getModel: function () {
+            return this._app.getModel();
         }
     }));
 

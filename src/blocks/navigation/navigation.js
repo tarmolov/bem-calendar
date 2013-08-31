@@ -1,7 +1,7 @@
-modules.define('navigation', ['i-bem__dom', 'jquery', 'bh'], function (provide, DOM, $, bh) {
+modules.define('navigation', ['i-bem__dom', 'jquery', 'bh', 'utils__date'], function (provide, DOM, $, bh, dateUtils) {
 
     provide(DOM.decl('navigation', {}, {
-        create: function () {
+        create: function (options) {
             return DOM.init($(bh.apply({
                 block: 'navigation',
                 content: [
@@ -10,7 +10,7 @@ modules.define('navigation', ['i-bem__dom', 'jquery', 'bh'], function (provide, 
                         mods: {theme: 'shadow'},
                         mix: [{block: 'navigation', elem: 'left'}]
                     },
-                    {elem: 'title', content: 'March 2013'},
+                    {elem: 'title', content: dateUtils.formatMonth(options.currentDate)},
                     {
                         block: 'button',
                         mods: {theme: 'shadow'},
