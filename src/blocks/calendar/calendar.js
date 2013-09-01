@@ -63,7 +63,9 @@ modules.define('calendar', ['i-bem__dom', 'jquery', 'bh', 'utils__date'], functi
         var endOfFirstWeek = getEndOfFirstWeek(date);
         var isCurrent;
         while (date < endDate) {
-            isCurrent = date.getTime() === selectedDate.getTime();
+            isCurrent = date.getDate() === selectedDate.getDate() &&
+                date.getMonth() === selectedDate.getMonth() &&
+                date.getFullYear() === selectedDate.getFullYear();
             if (date < endOfFirstWeek) {
                 row.push(getCellWithWeekDayJSON(date, isCurrent));
             } else {
