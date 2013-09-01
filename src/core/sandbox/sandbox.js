@@ -4,6 +4,7 @@ modules.define('sandbox', ['inherit', 'events'], function (provide, inherit, eve
         __constructor: function (app) {
             this.__base();
             this._app = app;
+            this._model = this._app.getModel();
         },
 
         getDomElement: function (component) {
@@ -12,11 +13,11 @@ modules.define('sandbox', ['inherit', 'events'], function (provide, inherit, eve
         },
 
         getCurrentDate: function () {
-            return this._app.getModel().get('currentDate');
+            return this._model.get('currentDate');
         },
 
         getSelectedDate: function () {
-            return this._app.getModel().get('selectedDate');
+            return this._model.get('selectedDate');
         }
     }));
 

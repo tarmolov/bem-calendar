@@ -25,8 +25,8 @@ modules.define(
     provide(inherit({
         __constructor: function (rootBlock) {
             this._rootBlock = rootBlock;
-            this._sandbox = new Sandbox(this);
             this._model = new Model(this._getInitialData());
+            this._sandbox = new Sandbox(this);
             var componentManager = this._componentManager = new ComponentManager();
 
             this._sandbox
