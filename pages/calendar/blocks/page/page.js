@@ -1,6 +1,6 @@
-modules.define('i-bem__dom', function (provide, DOM) {
+modules.define('page', ['i-bem__dom'], function (provide, DOM) {
 
-    DOM.decl('page', {
+    provide(DOM.decl('page', {
         onSetMod: {
             js: function () {
                 modules.require(['app'], function (Application) {
@@ -16,8 +16,15 @@ modules.define('i-bem__dom', function (provide, DOM) {
         appendView: function (view) {
             DOM.append(this.domElem, view.domElem);
         }
-    });
-
-    provide(DOM);
+    }));
 
 });
+
+/**
+ * It's a little hack
+ *
+ * We should require page for run application or
+ * we could define page as i-bem__dom module
+ * (but it's tricky)
+ */
+modules.require(['page'], function () {});
