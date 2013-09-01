@@ -3,12 +3,14 @@ modules.define(
     [
         'inherit',
         'base-component',
+        'model',
         'navigation'
     ],
     function (
         provide,
         inherit,
         BaseComponent,
+        Model,
         NavigationView
     ) {
 
@@ -17,11 +19,15 @@ modules.define(
             this.__base();
             this._element = sandbox.getDomElement(this);
             this._sandbox = sandbox;
-            this._model = sandbox.getModel()
-                .on('change:currentDate', this._onCurrentDateChanged, this);
+            this._model = new Model({
+                currentDate: sandbox.getCurrentDate()
+            });
             this._view = NavigationView.create({
                 currentDate: this._model.get('currentDate')
             })
+
+            this._model.on('change:currentDate', this._onCurrentDateChanged, this);
+            this._view
                 .on('prev', this._onPrevClick, this)
                 .on('next', this._onNextClick, this)
                 .on('current', this._onCurrentClick, this);
@@ -49,6 +55,7 @@ modules.define(
             this._view.setTitle({
                 currentDate: this._model.get('currentDate')
             });
+            this._sandbox.emit('change-current-date', this._model.get('currentDate'));
         }
     }, {
         getName: function () {

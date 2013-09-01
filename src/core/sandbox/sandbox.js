@@ -11,8 +11,12 @@ modules.define('sandbox', ['inherit', 'events'], function (provide, inherit, eve
             return this._app.getPlaceholderElement(id);
         },
 
-        getModel: function () {
-            return this._app.getModel();
+        getCurrentDate: function () {
+            return this._app.getModel().get('currentDate');
+        },
+
+        getSelectedDate: function () {
+            return this._app.getModel().get('selectedDate');
         }
     }));
 

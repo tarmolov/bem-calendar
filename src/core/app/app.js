@@ -29,6 +29,11 @@ modules.define(
             this._model = new Model(this._getInitialData());
             var componentManager = this._componentManager = new ComponentManager();
 
+            this._sandbox
+                .on('change-current-date', function (e, date) {
+                    this._model.set('currentDate', date);
+                }, this);
+
             componentManager.register(ToolBar.getName(), ToolBar);
             componentManager.register(Search.getName(), Search);
             componentManager.register(Navigation.getName(), Navigation);
