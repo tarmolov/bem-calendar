@@ -6,7 +6,10 @@ modules.define('calendar', ['i-bem__dom', 'jquery', 'bh', 'utils__date'], functi
         return {
             elem: 'cell',
             mods: {
-                state: isCurrent && 'seleted'
+                current: isCurrent && 'yes'
+            },
+            js: {
+                date: date.getTime()
             },
             content: dateUtils.getWeekDayName(date.getDay()) + ', ' + date.getDate()
         };
@@ -16,7 +19,7 @@ modules.define('calendar', ['i-bem__dom', 'jquery', 'bh', 'utils__date'], functi
         return {
             elem: 'cell',
             mods: {
-                state: isCurrent && 'seleted'
+                current: isCurrent && 'yes'
             },
             content: date.getDate()
         };
@@ -82,6 +85,23 @@ modules.define('calendar', ['i-bem__dom', 'jquery', 'bh', 'utils__date'], functi
     }
 
     provide(DOM.decl('calendar', {
+        onSetMod: {
+            js: {
+                inited: function () {
+                    this.bindTo(this.elem('cell'), 'click', this._onCellClick);
+                }
+            }
+        },
+
+        _onCellClick: function (e) {
+            var cellNode = $(e.target);
+            var options = this.elemParams(cellNode);
+            this.emit('create-event', {
+                options: options,
+                cellNode: cellNode
+            });
+        },
+
         update: function (options) {
             var bemjson = getRowsJSON(options.currentDate, options.selectedDate);
             DOM.update(this.domElem, bh.apply({

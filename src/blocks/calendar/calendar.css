@@ -11,6 +11,8 @@
 
 .calendar__cell
 {
+    position: relative;
+
     width: 14.3%;
     height: 130px;
     padding: 8px;
@@ -20,7 +22,7 @@
     border: 1px solid #999;
 }
 
-.calendar__cell_state_seleted
+.calendar__cell_current_yes
 {
     font-weight: bold;
 

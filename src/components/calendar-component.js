@@ -3,13 +3,15 @@ modules.define(
     [
         'inherit',
         'base-component',
-        'calendar'
+        'calendar',
+        'event'
     ],
     function (
         provide,
         inherit,
         BaseComponent,
-        CalendarView
+        CalendarView,
+        EventView
     ) {
 
     provide(inherit(BaseComponent, {
@@ -24,6 +26,11 @@ modules.define(
             this._element.append(this._view.domElem);
 
             sandbox.getModel().on('change:currentDate', this._onCurrentDateChanged, this);
+
+            this._view.on('create-event', function (e, data) {
+                var event = EventView.create(data.options).domElem;
+                data.cellNode.append(event);
+            });
         },
 
         _onCurrentDateChanged: function () {
