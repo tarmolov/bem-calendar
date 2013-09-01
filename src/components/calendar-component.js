@@ -22,11 +22,13 @@ modules.define(
             this._element = sandbox.getDomElement(this);
             this._model = new Model({
                 currentDate: sandbox.getCurrentDate(),
-                selectedDate: sandbox.getSelectedDate()
+                selectedDate: sandbox.getSelectedDate(),
+                events: sandbox.getEvents()
             });
             this._view = CalendarView.create({
                 currentDate: this._model.get('currentDate'),
-                selectedDate: this._model.get('selectedDate')
+                selectedDate: this._model.get('selectedDate'),
+                events: this._model.get('events')
             });
             this._element.append(this._view.domElem);
 
@@ -35,13 +37,16 @@ modules.define(
             this._view.on('create-event', function (e, data) {
                 var event = EventView.create(data.options).domElem;
                 data.cellNode.append(event);
-            });
+                this._model.get('events').push(data.options); // FIXME: add a right way to manipulate a list
+            }, this);
         },
 
         _onCurrentDateChanged: function (e, currentDate) {
+            console.log(this._model.get('events'));
             this._view.update({
                 currentDate: currentDate,
-                selectedDate: this._model.get('selectedDate')
+                selectedDate: this._model.get('selectedDate'),
+                events: this._model.get('events')
             });
         }
     }, {

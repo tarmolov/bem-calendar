@@ -57,7 +57,12 @@ modules.define(
             var now = new Date();
             return {
                 currentDate: now,
-                selectedDate: now
+                selectedDate: now,
+                events: [
+                    {
+                        date: 1377460800000
+                    }
+                ]
             };
         },
 

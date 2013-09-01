@@ -18,6 +18,10 @@ modules.define('sandbox', ['inherit', 'events'], function (provide, inherit, eve
 
         getSelectedDate: function () {
             return this._model.get('selectedDate');
+        },
+
+        getEvents: function () {
+            return this._model.get('events');
         }
     }));
 

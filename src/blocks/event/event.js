@@ -13,11 +13,16 @@ modules.define('event', ['i-bem__dom', 'jquery', 'bh'], function (provide, DOM, 
             e.stopPropagation();
         }
     }, {
+        create: function (options) {
+            var bemjson = this.getBEMJSON(options);
+            return DOM.init($(bh.apply(bemjson))).bem(this.getName());
+        },
 
-        create: function () {
-            return DOM.init($(bh.apply({
+        getBEMJSON: function (data) {
+            return {
                 block: 'event',
-            }))).bem(this.getName());
+                js: data
+            };
         }
     }));
 

@@ -18,6 +18,14 @@ modules.define('utils__date', function (provide) {
             var year = date.getFullYear();
             var month = date.getMonth();
             return new Date(year, ++month, 0).getDate();
+        },
+        normalize: function (date) {
+            date.setDate(1);
+            date.setHours(0);
+            date.setMinutes(0);
+            date.setSeconds(0);
+            date.setMilliseconds(0);
+            return date;
         }
     });
 
