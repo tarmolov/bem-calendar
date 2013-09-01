@@ -10,8 +10,10 @@ function createPlaceholder(id) {
 module.exports = {
     block: 'page',
     title: 'BEM Calendar',
-    head: [
-        {elem: 'css', url: '_calendar.css'},
+    styles: [
+        {elem: 'css', url: '_calendar.css'}
+    ],
+    scripts: [
         {elem: 'js', url: '_calendar.js'}
     ],
     content: [

@@ -24,7 +24,7 @@ module.exports = function (bh) {
                                         url: ctx.param('favicon')
                                     }
                             ],
-                            ctx.param('head')
+                            ctx.param('styles')
                         ]
                     },
                     ctx.json()
@@ -36,6 +36,13 @@ module.exports = function (bh) {
     bh.match('page', function (ctx) {
         ctx.tag('body');
         ctx.js(true);
+        ctx.content(
+            [].concat(
+                ctx.content(),
+                ctx.param('scripts')
+            ),
+            true
+        );
     });
 
     bh.match('page__html', function (ctx) {
