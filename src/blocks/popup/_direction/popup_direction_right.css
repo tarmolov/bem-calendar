@@ -1,0 +1,13 @@
+.popup_direction_right
+{
+    right: 0;
+}
+
+.popup_direction_right::after {
+    top: 50%;
+    left: -7px;
+
+    margin-top: -7px;
+
+    box-shadow: -2px 2px 3px 0 rgba(217,217,217,0.8)
+}

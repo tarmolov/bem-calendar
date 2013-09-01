@@ -1,0 +1,7 @@
+- block: popup
+- mods:
+    direction:
+      - bottom
+      - top
+      - left
+      - right
