@@ -1,56 +1,89 @@
-modules.define('calendar', ['i-bem__dom', 'jquery', 'bh'], function (provide, DOM, $, bh) {
+modules.define('calendar', ['i-bem__dom', 'jquery', 'bh', 'utils__date'], function (provide, DOM, $, bh, dateUtils) {
+
+    var COLLS_NUMBER = 7;
+
+    function getCellWithWeekDayJSON(date, isCurrent) {
+        return {
+            elem: 'cell',
+            mods: {
+                state: isCurrent && 'seleted'
+            },
+            content: dateUtils.getWeekDayName(date.getDay()) + ', ' + date.getDate()
+        };
+    }
+
+    function getCellJSON(date, isCurrent) {
+        return {
+            elem: 'cell',
+            mods: {
+                state: isCurrent && 'seleted'
+            },
+            content: date.getDate()
+        };
+    }
+
+    function getRowJSON(content) {
+        return {
+            elem: 'row',
+            content: content
+        };
+    }
+
+    function getDaysFromPrevMonth(currentDate) {
+        var currentDay = currentDate.getDay();
+        return !currentDay ? 6 : currentDay - 1;
+    }
+
+    function getStartDate(currentDate, daysFromPrevMonth) {
+        var startDate = new Date(currentDate);
+        startDate.setDate(startDate.getDate() - daysFromPrevMonth);
+        return startDate;
+    }
+
+    function getEndDate(currentDate, daysFromPrevMonth) {
+        var daysInCurrentMonth = dateUtils.daysInMonth(currentDate);
+        var daysFromNextMonth = 7 - (daysInCurrentMonth + daysFromPrevMonth) % COLLS_NUMBER;
+        var endDate = new Date(currentDate);
+        endDate.setDate(endDate.getDate() + daysInCurrentMonth + daysFromNextMonth);
+        return endDate;
+    }
+
+    function getEndOfFirstWeek(startDate) {
+        var endOfWeek = new Date(startDate);
+        endOfWeek.setDate(endOfWeek.getDate() + COLLS_NUMBER);
+        return endOfWeek;
+    }
+
+    function getRowsJSON(currentDate, selectedDate) {
+        var bemjson = [];
+        var row = [];
+        var daysFromPrevMonth = getDaysFromPrevMonth(currentDate);
+        var date = getStartDate(currentDate, daysFromPrevMonth);
+        var endDate = getEndDate(currentDate, daysFromPrevMonth);
+        var endOfFirstWeek = getEndOfFirstWeek(date);
+        var isCurrent;
+        while (date < endDate) {
+            isCurrent = date.getTime() === selectedDate.getTime();
+            if (date < endOfFirstWeek) {
+                row.push(getCellWithWeekDayJSON(date, isCurrent));
+            } else {
+                row.push(getCellJSON(date, isCurrent));
+            }
+            if (row.length === COLLS_NUMBER) {
+                bemjson.push(getRowJSON(row));
+                row = [];
+            }
+            date.setDate(date.getDate() + 1);
+        }
+
+        return bemjson;
+    }
 
     provide(DOM.decl('calendar', {}, {
-        create: function () {
+        create: function (options) {
             return DOM.init($(bh.apply({
                 block: 'calendar',
-                content: [
-                    {elem: 'row', content: [
-                        {elem: 'cell', content: 'Monday, 25'},
-                        {elem: 'cell', content: 'Tuesday, 26'},
-                        {elem: 'cell', content: 'Wednesday, 27'},
-                        {elem: 'cell', content: 'Thursday, 28'},
-                        {elem: 'cell', content: 'Friday, 1'},
-                        {elem: 'cell', mods: {state: 'selected'}, content: 'Saturday, 2'},
-                        {elem: 'cell', content: 'Sunday, 3'},
-                    ]},
-                    {elem: 'row', content: [
-                        {elem: 'cell', content: '4'},
-                        {elem: 'cell', content: '5'},
-                        {elem: 'cell', content: '6'},
-                        {elem: 'cell', content: '7'},
-                        {elem: 'cell', content: '8'},
-                        {elem: 'cell', content: '9'},
-                        {elem: 'cell', content: '10'},
-                    ]},
-                    {elem: 'row', content: [
-                        {elem: 'cell', content: '11'},
-                        {elem: 'cell', content: '12'},
-                        {elem: 'cell', content: '13'},
-                        {elem: 'cell', content: '14'},
-                        {elem: 'cell', content: '15'},
-                        {elem: 'cell', content: '16'},
-                        {elem: 'cell', content: '17'},
-                    ]},
-                    {elem: 'row', content: [
-                        {elem: 'cell', content: '18'},
-                        {elem: 'cell', content: '19'},
-                        {elem: 'cell', content: '20'},
-                        {elem: 'cell', content: '21'},
-                        {elem: 'cell', content: '22'},
-                        {elem: 'cell', content: '23'},
-                        {elem: 'cell', content: '24'}
-                    ]},
-                    {elem: 'row', content: [
-                        {elem: 'cell', content: '25'},
-                        {elem: 'cell', content: '26'},
-                        {elem: 'cell', content: '27'},
-                        {elem: 'cell', content: '28'},
-                        {elem: 'cell', content: '29'},
-                        {elem: 'cell', content: '30'},
-                        {elem: 'cell', content: '31'}
-                    ]}
-                ]
+                content: getRowsJSON(options.currentDate, options.selectedDate)
             }))).bem(this.getName());
         }
     }));

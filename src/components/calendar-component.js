@@ -16,7 +16,10 @@ modules.define(
         start: function (sandbox) {
             this.__base();
             this._element = sandbox.getDomElement(this);
-            this._element.append(CalendarView.create().domElem);
+            this._element.append(CalendarView.create({
+                currentDate: sandbox.getModel().get('currentDate'),
+                selectedDate: sandbox.getModel().get('selectedDate')
+            }).domElem);
         }
     }, {
         getName: function () {
