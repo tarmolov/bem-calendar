@@ -2,6 +2,7 @@ modules.define('model', ['inherit', 'events', 'utils__compare'], function (provi
 
     provide(inherit(events.Emitter, {
         __constructor: function (attributes) {
+            this.__base();
             this._attributes = attributes || {};
         },
 

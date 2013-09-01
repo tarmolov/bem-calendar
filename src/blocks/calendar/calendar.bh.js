@@ -5,6 +5,10 @@ module.exports = function (bh) {
         ctx.js(true);
     });
 
+    bh.match('calendar__content', function (ctx) {
+        ctx.tag('tbody');
+    });
+
     bh.match('calendar__row', function (ctx) {
         ctx.tag('tr');
     });

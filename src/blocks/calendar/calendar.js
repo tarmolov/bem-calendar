@@ -79,11 +79,23 @@ modules.define('calendar', ['i-bem__dom', 'jquery', 'bh', 'utils__date'], functi
         return bemjson;
     }
 
-    provide(DOM.decl('calendar', {}, {
+    provide(DOM.decl('calendar', {
+        update: function (options) {
+            var bemjson = getRowsJSON(options.currentDate, options.selectedDate);
+            DOM.update(this.domElem, bh.apply({
+                block: 'calendar',
+                elem: 'content',
+                content: bemjson
+            }));
+        }
+    }, {
         create: function (options) {
             return DOM.init($(bh.apply({
                 block: 'calendar',
-                content: getRowsJSON(options.currentDate, options.selectedDate)
+                content: {
+                    elem: 'content',
+                    content: getRowsJSON(options.currentDate, options.selectedDate)
+                }
             }))).bem(this.getName());
         }
     }));

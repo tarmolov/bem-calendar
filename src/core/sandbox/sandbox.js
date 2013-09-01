@@ -2,6 +2,7 @@ modules.define('sandbox', ['inherit', 'events'], function (provide, inherit, eve
 
     provide(inherit(events.Emitter, {
         __constructor: function (app) {
+            this.__base();
             this._app = app;
         },
 
