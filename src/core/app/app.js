@@ -34,10 +34,10 @@ modules.define(
                     this._model.set('currentDate', date);
                 }, this);
 
-            componentManager.register(ToolBar.getName(), ToolBar);
-            componentManager.register(Search.getName(), Search);
-            componentManager.register(Navigation.getName(), Navigation);
-            componentManager.register(Calendar.getName(), Calendar);
+            componentManager.register(ToolBar);
+            componentManager.register(Search);
+            componentManager.register(Navigation);
+            componentManager.register(Calendar);
             componentManager.startAll(this._sandbox);
         },
 

@@ -12,11 +12,10 @@ modules.define('component-manager', ['inherit'], function (provide, inherit) {
 
         /**
          * Registers new component
-         * @param {String} id
          * @param {IComponent} component
          */
-        register: function (id, component) {
-            this._registeredComponents[id] = component;
+        register: function (component) {
+            this._registeredComponents[component.getName()] = component;
         },
 
         /**
