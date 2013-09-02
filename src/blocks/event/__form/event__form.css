@@ -1,0 +1,17 @@
+.event__form_type_input
+{
+    margin-bottom: 4px;
+}
+
+.event__form_type_date
+{
+    margin: 3px 0 7px 0;
+
+    color: #000;
+}
+
+.event__form_type_description
+{
+    height: 95px;
+    margin: 30px 0 20px 0;
+}

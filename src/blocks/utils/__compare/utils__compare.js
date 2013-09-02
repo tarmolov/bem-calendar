@@ -1,7 +1,6 @@
 modules.define('utils__compare', function (provide) {
 
     var toString = Object.prototype.toString;
-    var valueOf = Object.prototype.valueOf;
     var compare;
 
     function isObject(obj) {
@@ -76,7 +75,7 @@ modules.define('utils__compare', function (provide) {
         return Number(a) === Number(b);
     }
 
-    function compare (a, b) {
+    compare = function (a, b) {
         switch (Boolean(true)) {
         case toString.apply(a) !== toString.apply(b):
             return false;

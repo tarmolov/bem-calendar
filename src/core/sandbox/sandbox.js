@@ -14,18 +14,6 @@ modules.define('sandbox', ['inherit', 'events'], function (provide, inherit, eve
 
         getModel: function () {
             return this._app.getModel();
-        },
-
-        getCurrentDate: function () {
-            return this._model.get('currentDate');
-        },
-
-        getSelectedDate: function () {
-            return this._model.get('selectedDate');
-        },
-
-        getEvents: function () {
-            return this._model.get('events');
         }
     }));
 

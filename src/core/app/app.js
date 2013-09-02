@@ -4,6 +4,7 @@ modules.define(
         'inherit',
         'sandbox',
         'model',
+        'model_type_list',
         'component-manager',
         'toolbar-component',
         'search-component',
@@ -15,6 +16,7 @@ modules.define(
         inherit,
         Sandbox,
         Model,
+        ListModel,
         ComponentManager,
         ToolBar,
         Search,
@@ -55,14 +57,15 @@ modules.define(
 
         _getInitialData: function () {
             var now = new Date();
+            var events = new ListModel();
+            events.add(new Model({
+                date: 1377460800000
+            }));
+
             return {
                 currentDate: now,
                 selectedDate: now,
-                events: [
-                    {
-                        date: 1377460800000
-                    }
-                ]
+                events: events
             };
         },
 

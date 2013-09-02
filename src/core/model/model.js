@@ -20,6 +20,19 @@ modules.define('model', ['inherit', 'events', 'utils__compare'], function (provi
 
         get: function (name) {
             return this._attributes[name];
+        },
+
+        toJSON: function () {
+            var json = {};
+            Object.keys(this._attributes).forEach(function (key) {
+                var item = this._attributes[key];
+                if (typeof item === 'object' && item.toJSON) {
+                    json[key] = item.toJSON();
+                } else {
+                    json[key] = item;
+                }
+            }.bind(this));
+            return json;
         }
     }));
 

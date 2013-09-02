@@ -1,4 +1,6 @@
 - block: popup
+  elems:
+    - close
 - mods:
     direction:
       - bottom

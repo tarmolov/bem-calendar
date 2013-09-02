@@ -26,6 +26,10 @@ modules.define('utils__date', function (provide) {
             date.setSeconds(0);
             date.setMilliseconds(0);
             return date;
+        },
+        formatDate: function (d) {
+            var date = typeof d === 'number' ? new Date(d) : d;
+            return this.getMonthName(date.getMonth()) + ' ' + date.getDate() + ', ' + date.getFullYear();
         }
     });
 

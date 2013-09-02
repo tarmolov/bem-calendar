@@ -94,7 +94,7 @@ modules.define(
 
     function filterEventsByMonth(events, date) {
         return events.filter(function (event) {
-            return event.date === date.getTime();
+            return event.get('date') === date.getTime();
         });
     }
 
@@ -154,9 +154,16 @@ modules.define(
             var options = this.elemParams(cellNode);
 
             var model = new Model(options);
-            var event = EventView.create(model).domElem;
-            cellNode.append(event);
-            this._model.get('events').push(model); // FIXME: add a right way to manipulate a list
+            var event = EventView.create(model);
+            cellNode.append(event.domElem);
+
+            // We cannot use stopPropagation in this case
+            // because other popups should be closed
+            // FIXME: use singleton
+            setTimeout(function () {
+                event.openPopup();
+            }, 0);
+            this._model.get('events').add(model);
         },
 
         _setModel: function (model) {

@@ -7,13 +7,26 @@ modules.define('popup', ['i-bem__dom', 'jquery', 'bh'], function (provide, DOM, 
             js: {
                 inited: function () {
                     this._direction = this.params.direction || 'bottom';
+                    this.bindTo('click', this._onClick, this);
+                    this.bindTo(this.elem('close'), 'click', this._onCloseClick, this);
+                    $(document).bind('click', $.proxy(this.hide, this));
                 }
             }
         },
 
         destruct: function () {
-            this.__base.apply(arguments);
+            this.__base.apply(this, arguments);
+            $(document).unbind('click', $.proxy(this.hide, this));
             this.domElem.remove();
+        },
+
+        _onClick: function (e) {
+            e.stopPropagation();
+        },
+
+        _onCloseClick: function (e) {
+            this.hide();
+            e.stopPropagation();
         },
 
         show: function (domNode) {
@@ -21,6 +34,10 @@ modules.define('popup', ['i-bem__dom', 'jquery', 'bh'], function (provide, DOM, 
             this._direction = this._getDirection(domNode);
             this.setMod('direction', this._direction);
             this._pos(this._calculateOffset());
+        },
+
+        hide: function () {
+            this.destruct();
         },
 
         _getDirection: function (domNode) {
@@ -55,6 +72,7 @@ modules.define('popup', ['i-bem__dom', 'jquery', 'bh'], function (provide, DOM, 
         _pos: function (offsetValue) {
             var offset = {};
             offset[this._direction] = offsetValue;
+            this.elem('content').css('width', this.elem('content').width());
             this.domElem.css(offset);
         },
 
@@ -74,10 +92,16 @@ modules.define('popup', ['i-bem__dom', 'jquery', 'bh'], function (provide, DOM, 
         create: function (options) {
             return DOM.init($(bh.apply({
                 block: 'popup',
+                mods: {
+                    'has-close': 'yes'
+                },
                 js: {
                     direction: options.direction
                 },
-                content: options.content
+                content: {
+                    elem: 'content',
+                    content: options.content
+                }
             }))).bem(this.getName());
         }
     }));

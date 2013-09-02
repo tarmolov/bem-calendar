@@ -20,4 +20,10 @@ IComponent.prototype = {
      * @returns {Boolean}
      */
     isStarted: function () {},
+
+    /**
+     * Returs ID component
+     * @returns {Boolean}
+     */
+    getName: function () {}
 }
