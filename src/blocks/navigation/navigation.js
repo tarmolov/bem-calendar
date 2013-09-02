@@ -17,24 +17,43 @@ modules.define('navigation', ['i-bem__dom', 'jquery', 'bh', 'utils__date'], func
             }
         },
 
+        destruct: function () {
+            this._base.apply(this, arguments);
+
+            this._model.un('change:currentDate', this.update, this);
+            this._model = null;
+        },
+
         _onPrevClick: function () {
-            this.emit('prev');
+            var currentDate = new Date(this._model.get('currentDate'));
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            this._model.set('currentDate', currentDate);
         },
 
         _onNextClick: function () {
-            this.emit('next');
+            var currentDate = new Date(this._model.get('currentDate'));
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            this._model.set('currentDate', currentDate);
         },
 
         _onCurrentClick: function () {
-            this.emit('current');
+            this._model.set('currentDate', new Date());
         },
 
-        setTitle: function (options) {
-            DOM.update(this.elem('title'), formatTitle(options.currentDate));
+        update: function () {
+            var title = formatTitle(this._model.get('currentDate'));
+            DOM.update(this.elem('title'), title);
+        },
+
+        _setModel: function (model) {
+            this._model = model;
+            this._model.on('change:currentDate', this.update, this);
+            this.update();
         }
+
     }, {
-        create: function (options) {
-            return DOM.init($(bh.apply({
+        create: function (model) {
+            var block = DOM.init($(bh.apply({
                 block: 'navigation',
                 content: [
                     {
@@ -43,8 +62,7 @@ modules.define('navigation', ['i-bem__dom', 'jquery', 'bh', 'utils__date'], func
                         mix: [{block: 'navigation', elem: 'left'}]
                     },
                     {
-                        elem: 'title',
-                        content: formatTitle(options.currentDate)
+                        elem: 'title'
                     },
                     {
                         block: 'button',
@@ -59,6 +77,8 @@ modules.define('navigation', ['i-bem__dom', 'jquery', 'bh', 'utils__date'], func
                     }
                 ]
             }))).bem(this.getName());
+            block._setModel(model);
+            return block;
         }
     }));
 

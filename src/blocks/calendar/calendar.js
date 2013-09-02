@@ -5,7 +5,8 @@ modules.define(
         'jquery',
         'bh',
         'utils__date',
-        'event'
+        'event',
+        'model'
     ],
     function (
         provide,
@@ -13,7 +14,8 @@ modules.define(
         $,
         bh,
         dateUtils,
-        EventView
+        EventView,
+        Model
     ) {
 
     var COLLS_NUMBER = 7;
@@ -96,10 +98,10 @@ modules.define(
         });
     }
 
-    function getRowsJSON(options) {
-        var currentDate = dateUtils.normalize(options.currentDate);
-        var selectedDate = dateUtils.normalize(options.selectedDate);
-        var events = options.events;
+    function getRowsJSON(model) {
+        var currentDate = dateUtils.normalize(model.get('currentDate'));
+        var selectedDate = dateUtils.normalize(model.get('selectedDate'));
+        var events = model.get('events');
         var daysFromPrevMonth = getDaysFromPrevMonth(currentDate);
         var date = getStartDate(currentDate, daysFromPrevMonth);
         var endDate = getEndDate(currentDate, daysFromPrevMonth);
@@ -136,6 +138,13 @@ modules.define(
             }
         },
 
+        destruct: function () {
+            this._base.apply(this, arguments);
+
+            this._model.un('change:currentDate', this.update, this);
+            this._model = null;
+        },
+
         _setUpListeners: function () {
             this.bindTo(this.findElem('cell'), 'click', this._onCellClick);
         },
@@ -143,14 +152,21 @@ modules.define(
         _onCellClick: function (e) {
             var cellNode = $(e.target);
             var options = this.elemParams(cellNode);
-            this.emit('create-event', {
-                options: options,
-                cellNode: cellNode
-            });
+
+            var model = new Model(options);
+            var event = EventView.create(model).domElem;
+            cellNode.append(event);
+            this._model.get('events').push(model); // FIXME: add a right way to manipulate a list
         },
 
-        update: function (options) {
-            var bemjson = getRowsJSON(options);
+        _setModel: function (model) {
+            this._model = model;
+            model.on('change:currentDate', this.update, this);
+            this.update();
+        },
+
+        update: function () {
+            var bemjson = getRowsJSON(this._model);
             DOM.update(this.domElem, bh.apply({
                 block: 'calendar',
                 elem: 'content',
@@ -159,14 +175,15 @@ modules.define(
             this._setUpListeners();
         }
     }, {
-        create: function (options) {
-            return DOM.init($(bh.apply({
+        create: function (model) {
+            var block = DOM.init($(bh.apply({
                 block: 'calendar',
                 content: {
                     elem: 'content',
-                    content: getRowsJSON(options)
                 }
             }))).bem(this.getName());
+            block._setModel(model);
+            return block;
         }
     }));
 
