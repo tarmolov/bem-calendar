@@ -156,14 +156,10 @@ modules.define(
             var model = new Model(options);
             var event = EventView.create(model);
             cellNode.append(event.domElem);
-
-            // We cannot use stopPropagation in this case
-            // because other popups should be closed
-            // FIXME: use singleton
-            setTimeout(function () {
-                event.openPopup();
-            }, 0);
+            event.openPopup();
             this._model.get('events').add(model);
+
+            e.stopPropagation();
         },
 
         _setModel: function (model) {

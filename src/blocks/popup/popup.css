@@ -9,6 +9,11 @@
     box-shadow: 0 0 5px 2px rgba(217,217,217,0.8);
 }
 
+.popup__content
+{
+    display: inline-block;
+}
+
 .popup::after {
     position: absolute;
 

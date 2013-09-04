@@ -65,22 +65,18 @@ modules.define(
 
         _onClick: function (e) {
             e.stopPropagation();
-            if (this._popup) {
-                this._popup.destruct();
-            }
             this.openPopup();
         },
 
         openPopup: function () {
-            this._popup = Popup.create({
-                direction: 'right',
-                content: getPopupContentJSON(this.params)
-            });
-            this._popup.show(this.domElem);
+            var popup = this.__self.getPopup();
+            var str = bh.apply(getPopupContentJSON(this.params));
+            popup.setContent(DOM.init($(str)).bem('form'));
+            popup.show(this.domElem);
         },
 
         closePopup: function () {
-            this._popup.hide();
+            this.__self.getPopup().hide();
         },
 
         update: function () {
@@ -105,6 +101,19 @@ modules.define(
                 block: 'event',
                 js: model.toJSON()
             };
+        },
+
+        getPopup: function () {
+            if (!this._popup) {
+                this._popup = this._createPopup();
+            }
+            return this._popup;
+        },
+
+        _createPopup: function () {
+            return Popup.create({
+                direction: 'right'
+            });
         }
     }));
 
