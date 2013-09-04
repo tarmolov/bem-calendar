@@ -1,6 +1,7 @@
 modules.define('navigation', ['i-bem__dom', 'jquery', 'bh', 'utils__date'], function (provide, DOM, $, bh, dateUtils) {
 
-    function formatTitle(date) {
+    function formatTitle(time) {
+        var date = new Date(time);
         var monthName = dateUtils.getMonthName(date.getMonth());
         var year = date.getFullYear();
         return monthName + ' ' + year;

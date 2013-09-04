@@ -56,7 +56,7 @@ modules.define(
         },
 
         _getInitialData: function () {
-            var now = new Date();
+            var now = new Date().getTime();
             var events = new ListModel();
             events.add(new Model({
                 date: 1377460800000
