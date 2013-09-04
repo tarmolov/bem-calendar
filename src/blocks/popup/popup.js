@@ -40,7 +40,10 @@ modules.define('popup', ['i-bem__dom', 'jquery', 'bh'], function (provide, DOM, 
         },
 
         hide: function () {
-            this.domElem.remove();
+            this.domElem.offset({
+                top: -10000,
+                left: -10000
+            });
         },
 
         _updatePosition: function () {

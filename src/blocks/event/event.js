@@ -5,7 +5,8 @@ modules.define(
         'jquery',
         'bh',
         'popup',
-        'utils__date'
+        'form_type_event',
+        'model'
     ],
     function (
         provide,
@@ -13,51 +14,17 @@ modules.define(
         $,
         bh,
         Popup,
-        dateUtils
+        FormEvent,
+        Model
     ) {
-
-    function getPopupContentJSON(data) {
-        return {
-            block: 'form',
-            attrs: {
-                style: 'width:215px'
-            },
-            content: [
-                {
-                    block: 'input',
-                    mix: [{block: 'event', elem: 'form', mods: {type: 'input'}}],
-                    placeholder: 'Event name',
-                    content: data.name || ''
-                },
-                {
-                    block: 'event',
-                    elem: 'form',
-                    mods: {type: 'date'},
-                    content: dateUtils.formatDate(data.date)
-                },
-                {
-                    block: 'input',
-                    mix: [{block: 'event', elem: 'form', mods: {type: 'input'}}],
-                    placeholder: 'Participants',
-                    content: data.participants || ''
-                },
-                {
-                    block: 'input',
-                    mods: {type: 'textarea'},
-                    mix: [{block: 'event', elem: 'form', mods: {type: 'description'}}],
-                    placeholder: 'Desription',
-                    content: data.description || ''
-                },
-                {block: 'button', mods: {theme: 'shadow'}, content: 'Save'},
-                {block: 'button', mods: {theme: 'shadow'}, content: 'Delete'}
-            ]
-        };
-    }
 
     provide(DOM.decl('event', {
         onSetMod: {
             js: {
                 inited: function () {
+                    this._model = new Model({
+                        date: this.params.date
+                    });
                     this.bindTo('click', this._onClick, this);
                 }
             }
@@ -70,13 +37,25 @@ modules.define(
 
         openPopup: function () {
             var popup = this.__self.getPopup();
-            var str = bh.apply(getPopupContentJSON(this.params));
-            popup.setContent(DOM.init($(str)).bem('form'));
+            this._form = FormEvent.create('event', this._model);
+            popup.setContent(this._form);
+
+            this._form.on('save', this._onSave, this);
+            this._form.on('delete', this._onDelete, this);
+
             popup.show(this.domElem);
         },
 
         closePopup: function () {
             this.__self.getPopup().hide();
+        },
+
+        _onSave: function () {
+            this.closePopup();
+        },
+
+        _onDelete: function () {
+            this.closePopup();
         },
 
         update: function () {

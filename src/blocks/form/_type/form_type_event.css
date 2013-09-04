@@ -1,0 +1,23 @@
+.form_type_event
+{
+    width: 215px
+}
+
+.form_type_event .form__name,
+.form_type_event .form__participants
+{
+    margin-bottom: 4px;
+}
+
+.form_type_event .form__date
+{
+    margin: 3px 0 7px 0;
+
+    color: #000;
+}
+
+.form_type_event .form__description
+{
+    height: 95px;
+    margin: 30px 0 20px 0;
+}

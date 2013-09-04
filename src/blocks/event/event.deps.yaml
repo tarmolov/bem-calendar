@@ -1,6 +1,4 @@
-- block: event
-  elems:
-    - form
+- form
 - popup
 - block: input
   mods:
