@@ -38,7 +38,10 @@ modules.define(
                 date: date.getTime()
             },
             content: [].concat(
-                dateUtils.getWeekDayName(date.getDay()) + ', ' + date.getDate(),
+                {
+                    elem: 'cell-title',
+                    content: dateUtils.getWeekDayName(date.getDay()) + ', ' + date.getDate()
+                },
                 getEventsJSON(events)
             )
         };
@@ -54,7 +57,10 @@ modules.define(
                 date: date.getTime()
             },
             content: [].concat(
-                date.getDate(),
+                {
+                    elem: 'cell-title',
+                    content: date.getDate()
+                },
                 getEventsJSON(events)
             )
         };
@@ -151,7 +157,7 @@ modules.define(
 
         _onCellClick: function (e) {
             var cellNode = $(e.target);
-            var options = this.elemParams(cellNode);
+            var options = this.elemParams($(e.currentTarget));
 
             var model = new Model(options);
             var event = EventView.create(model);

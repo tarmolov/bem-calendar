@@ -15,6 +15,13 @@ module.exports = function (bh) {
 
     bh.match('calendar__cell', function (ctx) {
         ctx.tag('td');
+        /**
+         * Firefox and Opera don't support position:relative for table cells
+         */
+        ctx.content({
+            elem: 'cell-inner',
+            content: ctx.content()
+        }, true);
     });
 
 };

@@ -15,6 +15,7 @@ modules.define('model', ['inherit', 'events', 'utils__compare'], function (provi
                     oldValue: oldValue,
                     newValue: value
                 });
+                this.emit('change');
             }
         },
 

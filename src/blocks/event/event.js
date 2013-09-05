@@ -22,12 +22,20 @@ modules.define(
         onSetMod: {
             js: {
                 inited: function () {
-                    this._model = new Model({
-                        date: this.params.date
-                    });
+                    this._setModel(new Model({
+                        date: this.params.date,
+                        title: this.params.title,
+                        participants: this.params.participants,
+                        description: this.params.description
+                    }));
                     this.bindTo('click', this._onClick, this);
                 }
             }
+        },
+
+        destruct: function () {
+            this.__base.apply(this, arguments);
+            this._model.un('change', this.update, this);
         },
 
         _onClick: function (e) {
@@ -59,10 +67,16 @@ modules.define(
         },
 
         update: function () {
+            this.elem('title').html(this._model.get('title'));
+            this.elem('participants').html(this._model.get('participants'));
         },
 
         _setModel: function (model) {
+            if (this._model) {
+                this._model.un('change', this.update, this);
+            }
             this._model = model;
+            this._model.on('change', this.update, this);
             this.update();
         }
     }, {
@@ -70,7 +84,6 @@ modules.define(
             var bemjson = this.getBEMJSON(model);
             var block = DOM.init($(bh.apply(bemjson))).bem(this.getName());
             block._setModel(model);
-            block.update();
 
             return block;
         },
@@ -78,7 +91,11 @@ modules.define(
         getBEMJSON: function (model) {
             return {
                 block: 'event',
-                js: model.toJSON()
+                js: model.toJSON(),
+                content: [
+                    {elem: 'title'},
+                    {elem: 'participants'}
+                ]
             };
         },
 

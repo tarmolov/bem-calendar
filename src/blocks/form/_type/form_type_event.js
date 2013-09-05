@@ -23,7 +23,7 @@ modules.define(
             content: [
                 {
                     block: 'input',
-                    mix: [{block: 'form', elem: 'name'}],
+                    mix: [{block: 'form', elem: 'title'}],
                     placeholder: 'Event name'
                 },
                 {
@@ -72,6 +72,9 @@ modules.define(
         },
 
         _onSaveClick: function () {
+            this._model.set('title', this.findBlockInside('title', 'input').getValue());
+            this._model.set('participants', this.findBlockInside('participants', 'input').getValue());
+            this._model.set('description', this.findBlockInside('description', 'input').getValue());
             this.emit('save');
         },
 
@@ -82,6 +85,9 @@ modules.define(
         update: function () {
             var date = new Date(this._model.get('date'));
             this.findBlockInside('date', 'label').setText(dateUtils.formatDate(date));
+            this.findBlockInside('title', 'input').setValue(this._model.get('title'));
+            this.findBlockInside('participants', 'input').setValue(this._model.get('participants'));
+            this.findBlockInside('description', 'input').setValue(this._model.get('description'));
         },
 
         _setModel: function (model) {

@@ -59,7 +59,9 @@ modules.define(
             var now = new Date().getTime();
             var events = new ListModel();
             events.add(new Model({
-                date: 1377460800000
+                date: 1377460800000,
+                title: 'Long long long title',
+                participants: 'Mike Vozovskyj, Alexander Tarmolov, Sergey Pupsikov'
             }));
 
             return {
