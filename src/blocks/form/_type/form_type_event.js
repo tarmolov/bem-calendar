@@ -72,9 +72,11 @@ modules.define(
         },
 
         _onSaveClick: function () {
-            this._model.set('title', this.findBlockInside('title', 'input').getValue());
-            this._model.set('participants', this.findBlockInside('participants', 'input').getValue());
-            this._model.set('description', this.findBlockInside('description', 'input').getValue());
+            var fields = ['title', 'participants', 'description'].reduce(function (result, key) {
+                result[key] = this.findBlockInside(key, 'input').getValue();
+                return result;
+            }.bind(this), {});
+            this._model.set(fields);
             this.emit('save');
         },
 

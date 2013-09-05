@@ -136,40 +136,50 @@ modules.define(
     }
 
     provide(DOM.decl('calendar', {
+        onSetMod: {
+            js: {
+                inited: function () {
+                    EventView.on(this.domElem, 'delete', this._onEventDelete, this);
+                }
+            }
+        },
 
         destruct: function () {
             this._base.apply(this, arguments);
 
-            this._model.un('change:currentDate', this.update, this);
+            EventView.un(this.domElem, 'delete', this._onEventDelete, this);
             this._model = null;
         },
 
+        _onEventDelete: function (e, eventModel) {
+            this._model.get('events').remove(eventModel);
+        },
+
         _onCellClick: function (e) {
-            var cellNode = $(e.target);
-            var options = this.elemParams($(e.currentTarget));
-
-            var model = new Model(options);
-            var event = EventView.create(model);
-            cellNode.append(event.domElem);
-            event.openPopup();
-            this._model.get('events').add(model);
-
             e.stopPropagation();
+            var options = this.elemParams($(e.currentTarget));
+            var model = new Model(options);
+            this._model.get('events').add(model);
         },
 
         _setModel: function (model) {
             this._model = model;
-            model.on('change:currentDate', this.update, this);
             this.update();
         },
 
         update: function () {
             var bemjson = getRowsJSON(this._model);
+
             DOM.update(this.domElem, bh.apply({
                 block: 'calendar',
                 elem: 'content',
                 content: bemjson
             }));
+
+            var events = this._model.get('events');
+            this.findBlocksInside('event').forEach(function (eventView, index) {
+                eventView._setModel(events.get(index));
+            });
             this.bindTo(this.findElem('cell'), 'click', this._onCellClick);
         }
     }, {

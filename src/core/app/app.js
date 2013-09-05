@@ -31,11 +31,6 @@ modules.define(
             this._sandbox = new Sandbox(this);
             var componentManager = this._componentManager = new ComponentManager();
 
-            this._sandbox
-                .on('change-current-date', function (e, date) {
-                    this._model.set('currentDate', date);
-                }, this);
-
             componentManager.register(ToolBar);
             componentManager.register(Search);
             componentManager.register(Navigation);
@@ -57,17 +52,17 @@ modules.define(
 
         _getInitialData: function () {
             var now = new Date().getTime();
-            var events = new ListModel();
-            events.add(new Model({
-                date: 1377460800000,
-                title: 'Long long long title',
-                participants: 'Mike Vozovskyj, Alexander Tarmolov, Sergey Pupsikov'
-            }));
 
             return {
                 currentDate: now,
                 selectedDate: now,
-                events: events
+                events: [
+                    {
+                        date: 1377460800000,
+                        title: 'Long long long title',
+                        participants: 'Mike Vozovskyj, Alexander Tarmolov, Sergey Pupsikov'
+                    }
+                ]
             };
         },
 

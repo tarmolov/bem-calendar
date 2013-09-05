@@ -1,12 +1,47 @@
-modules.define('model', ['inherit', 'events', 'utils__compare'], function (provide, inherit, events, isEqual) {
+modules.define('model', ['inherit', 'events', 'utils__compare', 'model_type_list'], function (provide, inherit, events, isEqual, ListModel) {
 
-    provide(inherit(events.Emitter, {
+    var Model = inherit(events.Emitter, {
         __constructor: function (attributes) {
             this.__base();
             this._attributes = attributes || {};
+            this._init();
+        },
+
+        _init: function () {
+            Object.keys(this._attributes).map(function (key) {
+                var item = this._attributes[key];
+                if (typeof item  === 'object') {
+                    this._attributes[key] = Array.isArray(item) ?
+                        new ListModel(item.map(function (i) {
+                            return new Model(i);
+                        })) :
+                        new Model(item);
+                    this._attributes[key].on('change', this._onNestedModelChanged, this);
+                }
+            }.bind(this));
+        },
+
+        _onNestedModelChanged: function () {
+            this.emit('change');
         },
 
         set: function (name, value) {
+            var fields;
+
+            if (typeof name === 'string') {
+                fields = {};
+                fields[name] = value;
+            } else {
+                fields = name;
+            }
+            var isChanged = this._setFields(name, value);
+
+            if (isChanged) {
+                this.emit('change');
+            }
+        },
+
+        _setField: function (name, value) {
             var oldValue = this.get(name);
 
             if (!isEqual(oldValue, value)) {
@@ -15,8 +50,15 @@ modules.define('model', ['inherit', 'events', 'utils__compare'], function (provi
                     oldValue: oldValue,
                     newValue: value
                 });
-                this.emit('change');
+                return name;
             }
+            return false;
+        },
+
+        _setFields: function (fields) {
+            return Object.keys(fields).filter(function (key) {
+                return Boolean(this._setField(key, fields[key]));
+            }.bind(this)).length;
         },
 
         get: function (name) {
@@ -35,6 +77,8 @@ modules.define('model', ['inherit', 'events', 'utils__compare'], function (provi
             }.bind(this));
             return json;
         }
-    }));
+    });
+
+    provide(Model);
 
 });

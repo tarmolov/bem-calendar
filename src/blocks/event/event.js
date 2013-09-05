@@ -5,8 +5,7 @@ modules.define(
         'jquery',
         'bh',
         'popup',
-        'form_type_event',
-        'model'
+        'form_type_event'
     ],
     function (
         provide,
@@ -14,20 +13,13 @@ modules.define(
         $,
         bh,
         Popup,
-        FormEvent,
-        Model
+        FormEvent
     ) {
 
     provide(DOM.decl('event', {
         onSetMod: {
             js: {
                 inited: function () {
-                    this._setModel(new Model({
-                        date: this.params.date,
-                        title: this.params.title,
-                        participants: this.params.participants,
-                        description: this.params.description
-                    }));
                     this.bindTo('click', this._onClick, this);
                 }
             }
@@ -64,6 +56,7 @@ modules.define(
 
         _onDelete: function () {
             this.closePopup();
+            this.emit('delete', this._model);
         },
 
         update: function () {
