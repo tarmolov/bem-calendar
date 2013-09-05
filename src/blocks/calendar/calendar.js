@@ -136,23 +136,12 @@ modules.define(
     }
 
     provide(DOM.decl('calendar', {
-        onSetMod: {
-            js: {
-                inited: function () {
-                    this._setUpListeners(); // FIXME: live events work only for block?
-                }
-            }
-        },
 
         destruct: function () {
             this._base.apply(this, arguments);
 
             this._model.un('change:currentDate', this.update, this);
             this._model = null;
-        },
-
-        _setUpListeners: function () {
-            this.bindTo(this.findElem('cell'), 'click', this._onCellClick);
         },
 
         _onCellClick: function (e) {
@@ -181,7 +170,7 @@ modules.define(
                 elem: 'content',
                 content: bemjson
             }));
-            this._setUpListeners();
+            this.bindTo(this.findElem('cell'), 'click', this._onCellClick);
         }
     }, {
         create: function (model) {
