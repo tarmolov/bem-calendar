@@ -4,14 +4,16 @@ modules.define(
         'inherit',
         'component',
         'model',
-        'calendar'
+        'calendar',
+        'i-bem__dom'
     ],
     function (
         provide,
         inherit,
         BaseComponent,
         Model,
-        CalendarView
+        CalendarView,
+        DOM
     ) {
 
     provide(inherit(BaseComponent, {
@@ -32,7 +34,8 @@ modules.define(
 
             this._model.un('change', this._view.update, this._view);
             this._sandbox.un('new-event', this._onNewEvent, this);
-            this._view.destruct();
+
+            DOM.destruct(this._view.domElem);
             this._view = null;
             this._element = null;
             this._sandbox = null;

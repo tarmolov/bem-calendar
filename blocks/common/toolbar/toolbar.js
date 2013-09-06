@@ -33,7 +33,10 @@ modules.define(
 
         destruct: function () {
             this.__base.apply(this, arguments);
-            this._popup.destruct();
+
+            if (this._popup) {
+                this._popup.destruct();
+            }
         },
 
         _onNewEvent: function (e, model) {

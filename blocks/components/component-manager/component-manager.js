@@ -67,8 +67,16 @@ modules.define('component-manager', ['inherit'], function (provide, inherit) {
          * @return {IComponent} component
          */
         getComponent: function (id) {
-            return this._runningComponents[id] ||
-                this._registeredComponents[id] && new this._registeredComponents[id]();
+            if (!this._registeredComponents[id]) {
+                return false;
+            }
+
+            var component = this._runningComponents[id];
+            if (!component) {
+                component = new this._registeredComponents[id]();
+                this._runningComponents[id] = component;
+            }
+            return component;
         },
 
         /**

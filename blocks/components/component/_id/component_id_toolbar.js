@@ -3,22 +3,24 @@ modules.define(
     [
         'inherit',
         'component',
-        'toolbar'
+        'toolbar',
+        'i-bem__dom'
     ],
     function (
         provide,
         inherit,
         BaseComponent,
-        ToolBarView
+        ToolBarView,
+        DOM
     ) {
 
     provide(inherit(BaseComponent, {
         start: function (sandbox) {
             this.__base();
+
             this._sandbox = sandbox;
             this._element = sandbox.getDomElement(this);
-            this._model = sandbox.getModel();
-            this._view = ToolBarView.create(this._model);
+            this._view = ToolBarView.create(sandbox.getModel());
             this._view.on('create', this._onCreate, this);
             this._element.append(this._view.domElem);
         },
@@ -26,7 +28,8 @@ modules.define(
         stop: function () {
             this.__base.apply(this, arguments);
 
-            this._view.destruct();
+            DOM.destruct(this._view.domElem);
+
             this._view = null;
             this._element = null;
         },

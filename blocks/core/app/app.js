@@ -54,9 +54,7 @@ modules.define(
         },
 
         _getInitialData: function () {
-            var data = Sync.getData() || {
-                events: []
-            };
+            var data = Sync.getData();
             var now = new Date().getTime();
 
             data.currentDate = data.selectedDate = now;

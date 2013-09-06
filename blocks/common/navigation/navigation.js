@@ -19,7 +19,7 @@ modules.define('navigation', ['i-bem__dom', 'jquery', 'bh', 'utils__date'], func
         },
 
         destruct: function () {
-            this._base.apply(this, arguments);
+            this.__base.apply(this, arguments);
 
             this._model.un('change:currentDate', this.update, this);
             this._model = null;

@@ -73,6 +73,10 @@ module.exports = function (config) {
         return [].concat(
             getLevels(),
 
+            [
+                'test/blocks/components'
+            ],
+
             // Collect tests from all pages levels
             fs.readdirSync('pages')
                 .map(function (page) {

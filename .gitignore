@@ -3,6 +3,7 @@ node_modules/
 pages/*/*.*
 !pages/*/*.bemjson.js
 test/*
+!test/blocks
 !test/test.html
 !test/mocha.js
 !test/mocha.css

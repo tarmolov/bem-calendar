@@ -3,21 +3,22 @@ modules.define(
     [
         'inherit',
         'component',
-        'navigation'
+        'navigation',
+        'i-bem__dom'
     ],
     function (
         provide,
         inherit,
         BaseComponent,
-        NavigationView
+        NavigationView,
+        DOM
     ) {
 
     provide(inherit(BaseComponent, {
         start: function (sandbox) {
             this.__base.apply(this, arguments);
 
-            var model = sandbox.getModel();
-            this._view = NavigationView.create(model);
+            this._view = NavigationView.create(sandbox.getModel());
             this._element = sandbox.getDomElement(this);
             this._element.append(this._view.domElem);
         },
@@ -25,7 +26,8 @@ modules.define(
         stop: function () {
             this.__base.apply(this, arguments);
 
-            this._view.destruct();
+            DOM.destruct(this._view.domElem);
+
             this._view = null;
             this._element = null;
         }

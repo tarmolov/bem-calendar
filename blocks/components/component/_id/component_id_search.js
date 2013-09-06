@@ -3,21 +3,34 @@ modules.define(
     [
         'inherit',
         'component',
-        'search'
+        'search',
+        'i-bem__dom'
     ],
     function (
         provide,
         inherit,
         BaseComponent,
-        SearchView
+        SearchView,
+        DOM
     ) {
 
     provide(inherit(BaseComponent, {
         start: function (sandbox) {
-            this.__base();
+            this.__base.apply(this, arguments);
+
             this._element = sandbox.getDomElement(this);
-            this._element.append(SearchView.create().domElem);
-        }
+            this._view = SearchView.create();
+            this._element.append(this._view.domElem);
+        },
+
+        stop: function () {
+            this.__base.apply(this, arguments);
+
+            DOM.destruct(this._view.domElem);
+
+            this._element = null;
+            this._view = null;
+        },
     }, {
         getName: function () {
             return 'search';

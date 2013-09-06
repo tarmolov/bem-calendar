@@ -1,6 +1,8 @@
 modules.define('component', ['inherit'], function (provide, inherit) {
 
     provide(inherit({
+        _isStarted: false,
+
         start: function () {
             this._isStarted = true;
         },

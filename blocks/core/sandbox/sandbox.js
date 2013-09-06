@@ -4,7 +4,6 @@ modules.define('sandbox', ['inherit', 'events'], function (provide, inherit, eve
         __constructor: function (app) {
             this.__base();
             this._app = app;
-            this._model = this._app.getModel();
         },
 
         getDomElement: function (component) {
