@@ -39,14 +39,14 @@ modules.define(
             var popup = this.__self.getPopup();
             this._form = FormEvent.create('event', this._model);
             popup.setContent(this._form);
+            popup.show(this.domElem);
 
             this._form.on('save', this._onSave, this);
             this._form.on('delete', this._onDelete, this);
-
-            popup.show(this.domElem);
         },
 
         closePopup: function () {
+            this._form.destruct();
             this.__self.getPopup().hide();
         },
 
@@ -62,6 +62,10 @@ modules.define(
         update: function () {
             this.elem('title').html(this._model.get('title'));
             this.elem('participants').html(this._model.get('participants'));
+        },
+
+        getModel: function () {
+            return this._model;
         },
 
         _setModel: function (model) {

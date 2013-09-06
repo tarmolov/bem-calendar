@@ -160,6 +160,17 @@ modules.define(
             var options = this.elemParams($(e.currentTarget));
             var model = new Model(options);
             this._model.get('events').add(model);
+            this.onNewEvent(null, model);
+        },
+
+        onNewEvent: function (e, model) {
+            var event = this.findBlocksInside('event').filter(function (event) {
+                return event.params.date === model.get('date');
+            })[0];
+
+            if (event) {
+                event.openPopup();
+            }
         },
 
         _setModel: function (model) {
@@ -177,8 +188,14 @@ modules.define(
             }));
 
             var events = this._model.get('events');
-            this.findBlocksInside('event').forEach(function (eventView, index) {
-                eventView._setModel(events.get(index));
+            this.findBlocksInside('event').forEach(function (eventView) {
+                var model = events.filter(function (event) {
+                    return eventView.params.date === event.get('date');
+                })[0];
+
+                if (model) {
+                    eventView._setModel(model);
+                }
             });
             this.bindTo(this.findElem('cell'), 'click', this._onCellClick);
         }

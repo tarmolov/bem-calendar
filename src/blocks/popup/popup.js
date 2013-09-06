@@ -118,6 +118,7 @@ modules.define('popup', ['i-bem__dom', 'jquery', 'bh'], function (provide, DOM, 
         },
 
         setContent: function (content) {
+            this.hide();
             DOM.update(this.findElem('content'), content.domElem);
             if (this._targetNode) {
                 this._updatePosition();
