@@ -67,7 +67,8 @@ modules.define('component-manager', ['inherit'], function (provide, inherit) {
          * @return {IComponent} component
          */
         getComponent: function (id) {
-            return this._runningComponents[id] || this._registeredComponents[id] && new this._registeredComponents[id];;
+            return this._runningComponents[id] ||
+                this._registeredComponents[id] && new this._registeredComponents[id]();
         },
 
         /**

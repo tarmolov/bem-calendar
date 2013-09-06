@@ -1,3 +1,5 @@
+/*jshint unused:false*/
+
 /**
  * @class Component Interface
  */
@@ -13,7 +15,7 @@ IComponent.prototype = {
     /**
      * Stops component
      */
-    start: function () {},
+    stop: function () {},
 
     /**
      * Returs current component state
@@ -26,4 +28,4 @@ IComponent.prototype = {
      * @returns {Boolean}
      */
     getName: function () {}
-}
+};

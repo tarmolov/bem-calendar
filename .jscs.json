@@ -3,7 +3,7 @@
         ".git/**",
         ".bem/**",
         "node_modules/**",
-        "src/vendors/**",
+        "blocks/vendors/**",
         "pages/*/*.*",
         "test/**"
     ],

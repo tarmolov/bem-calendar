@@ -1,4 +1,18 @@
-modules.define('model', ['inherit', 'events', 'utils__compare', 'model_type_list'], function (provide, inherit, events, isEqual, ListModel) {
+modules.define(
+    'model',
+    [
+        'inherit',
+        'events',
+        'utils__compare',
+        'model_type_list'
+    ],
+    function (
+        provide,
+        inherit,
+        events,
+        isEqual,
+        ListModel
+    ) {
 
     var Model = inherit(events.Emitter, {
         __constructor: function (attributes) {

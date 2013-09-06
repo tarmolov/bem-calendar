@@ -1,26 +1,26 @@
 modules.define(
-    'search-component',
+    'component_id_toolbar',
     [
         'inherit',
-        'base-component',
-        'search'
+        'component',
+        'toolbar'
     ],
     function (
         provide,
         inherit,
         BaseComponent,
-        SearchView
+        ToolBarView
     ) {
 
     provide(inherit(BaseComponent, {
         start: function (sandbox) {
             this.__base();
             this._element = sandbox.getDomElement(this);
-            this._element.append(SearchView.create().domElem);
+            this._element.append(ToolBarView.create().domElem);
         }
     }, {
         getName: function () {
-            return 'search';
+            return 'toolbar';
         }
     }));
 

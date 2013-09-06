@@ -21,12 +21,12 @@ module.exports = {
                 predef: ['modules']
             },
             includes: [
-                'src/{blocks,controllers}/**/*.js',
+                'blocks/{common,components,core,}/**/*.js',
                 'pages/*/blocks/**/*.js'
             ],
             excludes: [
-                'src/vendors/**',
-                'src/{blocks,controllers}/**/*.{bh,deps,test}.js',
+                'blocks/vendors/**',
+                'blocks/{common,components,core,}/**/*.{bh,deps,test}.js',
                 'pages/*/blocks/**/*.{bh,deps,test}.js'
             ]
         },
@@ -36,7 +36,7 @@ module.exports = {
                 predef: ['module']
             },
             includes: [
-                'src/{blocks,controllers}/**/*.bh.js',
+                'blocks/{common,components,core}/**/*.bh.js',
                 'pages/*/blocks/**/*.bh.js'
             ]
         },
@@ -56,7 +56,8 @@ module.exports = {
                 expr: true // for should asserts
             },
             includes: [
-                'src/{blocks,controllers}/**/*.test.js'
+                'blocks/{common,components,core}/**/*.test.js',
+                'pages/*/blocks/**/*.test.js'
             ]
         }
     }

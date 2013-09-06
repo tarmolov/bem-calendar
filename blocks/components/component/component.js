@@ -1,7 +1,7 @@
-modules.define('base-component', ['inherit'], function (provide, inherit) {
+modules.define('component', ['inherit'], function (provide, inherit) {
 
     provide(inherit({
-        start: function (sandbox) {
+        start: function () {
             this._isStarted = true;
         },
 

@@ -59,16 +59,13 @@ module.exports = function (config) {
 
     function getLevels() {
         return [
-            'src/vendors/bem-core/common.blocks',
-            'src/vendors/bem-core/desktop.blocks',
-            'src/blocks',
-            'src/core',
-            'src/components'
+            'blocks/vendors/bem-core/common.blocks',
+            'blocks/vendors/bem-core/desktop.blocks',
+            'blocks/common',
+            'blocks/core',
+            'blocks/components'
         ].map(config.resolvePath.bind(config));
     }
-    config.setLevelNamingScheme([
-        'src/components'
-    ], require('enb/lib/levels/level-plain'));
 
     function getTestLevels() {
         var fs = require('fs');

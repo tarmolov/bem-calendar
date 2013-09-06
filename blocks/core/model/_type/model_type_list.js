@@ -27,7 +27,7 @@ modules.define('model_type_list', ['inherit', 'events'], function (provide, inhe
             return this._models[index];
         },
 
-        _onNestedModelChanged: function (model) {
+        _onNestedModelChanged: function () {
             this.emit('change');
         },
 

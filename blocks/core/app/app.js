@@ -6,10 +6,10 @@ modules.define(
         'model',
         'model_type_list',
         'component-manager',
-        'toolbar-component',
-        'search-component',
-        'navigation-component',
-        'calendar-component'
+        'component_id_toolbar',
+        'component_id_search',
+        'component_id_navigation',
+        'component_id_calendar'
     ],
     function (
         provide,
