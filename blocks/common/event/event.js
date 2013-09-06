@@ -27,6 +27,7 @@ modules.define(
 
         destruct: function () {
             this.__base.apply(this, arguments);
+            this.__self.getPopup().hide();
             this._model.un('change', this.update, this);
         },
 

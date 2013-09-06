@@ -48,7 +48,7 @@ modules.define(
             } else {
                 fields = name;
             }
-            var isChanged = this._setFields(name, value);
+            var isChanged = this._setFields(fields);
 
             if (isChanged) {
                 this.emit('change');

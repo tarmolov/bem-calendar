@@ -11,6 +11,10 @@ modules.define('utils__date', function (provide) {
         getMonthName: function (month) {
             return MONTH_NAMES[month];
         },
+        getMonthNumber: function (name) {
+            var monthName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+            return MONTH_NAMES.indexOf(monthName);
+        },
         getWeekDayName: function (day) {
             return DAYS[day];
         },

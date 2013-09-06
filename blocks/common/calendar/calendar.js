@@ -156,14 +156,18 @@ modules.define(
         },
 
         _onCellClick: function (e) {
-            e.stopPropagation();
             var options = this.elemParams($(e.currentTarget));
             var model = new Model(options);
             this._model.get('events').add(model);
-            this.onNewEvent(null, model);
+            this.openPopup(model, true);
         },
 
-        onNewEvent: function (e, model) {
+        openPopup: function (model, disableAutoSwitching) {
+            if (!disableAutoSwitching) {
+                var eventDate = dateUtils.normalize(new Date(model.get('date')), true);
+                this._model.set('currentDate', eventDate.getTime());
+            }
+
             var event = this.findBlocksInside('event').filter(function (event) {
                 return event.params.date === model.get('date');
             })[0];

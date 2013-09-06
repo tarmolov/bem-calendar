@@ -28,17 +28,17 @@ modules.define('navigation', ['i-bem__dom', 'jquery', 'bh', 'utils__date'], func
         _onPrevClick: function () {
             var currentDate = new Date(this._model.get('currentDate'));
             currentDate.setMonth(currentDate.getMonth() - 1);
-            this._model.set('currentDate', currentDate);
+            this._model.set('currentDate', currentDate.getTime());
         },
 
         _onNextClick: function () {
             var currentDate = new Date(this._model.get('currentDate'));
             currentDate.setMonth(currentDate.getMonth() + 1);
-            this._model.set('currentDate', currentDate);
+            this._model.set('currentDate', currentDate.getTime());
         },
 
         _onCurrentClick: function () {
-            this._model.set('currentDate', new Date());
+            this._model.set('currentDate', new Date().getTime());
         },
 
         update: function () {

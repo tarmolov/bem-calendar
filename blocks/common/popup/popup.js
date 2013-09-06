@@ -7,30 +7,15 @@ modules.define('popup', ['i-bem__dom', 'jquery', 'bh'], function (provide, DOM, 
             js: {
                 inited: function () {
                     this._direction = this.params.direction || 'bottom';
-                    this.bindTo('click', this._onClick, this);
-                    this.bindTo(this.elem('close'), 'click', this._onCloseClick, this);
-                    $(document).bind('click', $.proxy(this.hide, this));
-                    $(window).bind('resize', $.proxy(this._updatePosition, this));
-                    $(window).bind('scroll', $.proxy(this._updatePosition, this));
+                    this.bindTo(this.elem('close'), 'click', this.hide, this);
                 }
             }
         },
 
         destruct: function () {
             this.__base.apply(this, arguments);
-            $(document).unbind('click', $.proxy(this.hide, this));
-            $(window).unbind('resize', $.proxy(this._updatePosition, this));
-            $(window).unbind('scroll', $.proxy(this._updatePosition, this));
+            $(document).unbind('click', $.proxy(this._onDocumentClick, this));
             this.hide();
-        },
-
-        _onClick: function (e) {
-            e.stopPropagation();
-        },
-
-        _onCloseClick: function (e) {
-            this.hide();
-            e.stopPropagation();
         },
 
         show: function (targetNode) {
@@ -44,6 +29,11 @@ modules.define('popup', ['i-bem__dom', 'jquery', 'bh'], function (provide, DOM, 
                 top: -10000,
                 left: -10000
             });
+        },
+
+        isShown: function () {
+            var offset = this.domElem.offset();
+            return offset.top !== -10000 && offset.left !== -10000;
         },
 
         _updatePosition: function () {
