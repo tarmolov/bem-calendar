@@ -50,6 +50,12 @@ modules.define('model_type_list', ['inherit', 'events'], function (provide, inhe
 
         length: function () {
             return this._models.length;
+        },
+
+        toJSON: function () {
+            return this._models.map(function (model) {
+                return model.toJSON();
+            });
         }
     }));
 

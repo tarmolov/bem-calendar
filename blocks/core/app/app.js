@@ -9,7 +9,8 @@ modules.define(
         'component_id_toolbar',
         'component_id_search',
         'component_id_navigation',
-        'component_id_calendar'
+        'component_id_calendar',
+        'component_id_sync'
     ],
     function (
         provide,
@@ -21,7 +22,8 @@ modules.define(
         ToolBar,
         Search,
         Navigation,
-        Calendar
+        Calendar,
+        Sync
     ) {
 
     provide(inherit({
@@ -35,6 +37,7 @@ modules.define(
             componentManager.register(Search);
             componentManager.register(Navigation);
             componentManager.register(Calendar);
+            componentManager.register(Sync);
             componentManager.startAll(this._sandbox);
         },
 
@@ -51,19 +54,14 @@ modules.define(
         },
 
         _getInitialData: function () {
+            var data = Sync.getData() || {
+                events: []
+            };
             var now = new Date().getTime();
 
-            return {
-                currentDate: now,
-                selectedDate: now,
-                events: [
-                    {
-                        date: 1377460800000,
-                        title: 'Long long long title',
-                        participants: 'Mike Vozovskyj, Alexander Tarmolov, Sergey Pupsikov'
-                    }
-                ]
-            };
+            data.currentDate = data.selectedDate = now;
+
+            return data;
         },
 
         getPlaceholderElement: function (id) {
