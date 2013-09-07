@@ -44,12 +44,8 @@ modules.define(
         destruct: function () {
             this._componentManager.stopAll();
             this._componentManager = null;
-
             this._sandBox = null;
-
-            this._layout.destruct();
-            this._layout = null;
-
+            this._model = null;
             this._rootBlock = null;
         },
 
