@@ -29,7 +29,7 @@ modules.define(
     provide(inherit({
         __constructor: function (rootBlock) {
             this._rootBlock = rootBlock;
-            this._model = new Model(this._getInitialData());
+            this._model = new Model(Sync.getData());
             this._sandbox = new Sandbox(this);
             var componentManager = this._componentManager = new ComponentManager();
 
@@ -51,15 +51,6 @@ modules.define(
             this._layout = null;
 
             this._rootBlock = null;
-        },
-
-        _getInitialData: function () {
-            var data = Sync.getData();
-            var now = new Date().getTime();
-
-            data.currentDate = data.selectedDate = now;
-
-            return data;
         },
 
         getPlaceholderElement: function (id) {

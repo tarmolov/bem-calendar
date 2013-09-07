@@ -105,8 +105,9 @@ modules.define(
     }
 
     function getRowsJSON(model) {
-        var currentDate = dateUtils.normalize(new Date(model.get('currentDate')), true);
-        var selectedDate = dateUtils.normalize(new Date(model.get('selectedDate')));
+        var now = (new Date()).getTime();
+        var currentDate = dateUtils.normalize(new Date(model.get('currentDate') || now), true);
+        var selectedDate = dateUtils.normalize(new Date(model.get('selectedDate') || now));
         var events = model.get('events') || [];
         var daysFromPrevMonth = getDaysFromPrevMonth(currentDate);
         var date = getStartDate(currentDate, daysFromPrevMonth);
