@@ -1,5 +1,9 @@
 modules.define('sandbox', ['inherit', 'events'], function (provide, inherit, events) {
 
+    /**
+     * Sandbox
+     * @implements ISandbox
+     */
     provide(inherit(events.Emitter, {
         __constructor: function (app) {
             this.__base.apply(this, arguments);
