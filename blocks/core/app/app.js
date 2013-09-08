@@ -41,6 +41,8 @@ modules.define(
             this._sandbox = new Sandbox(this);
             var componentManager = this._componentManager = new ComponentManager();
 
+            this._sandbox.on('force-update', this.restart, this);
+
             componentManager.register(ToolBar);
             componentManager.register(Search);
             componentManager.register(Navigation);
@@ -52,9 +54,19 @@ modules.define(
         destruct: function () {
             this._componentManager.stopAll();
             this._componentManager = null;
+            this._sandbox.un('force-update', this.restart, this);
             this._sandBox = null;
             this._model = null;
             this._rootBlock = null;
+        },
+
+        /**
+         * Restart application
+         */
+        restart: function () {
+            this._componentManager.stopAll();
+            this._model = new Model(Sync.getData());
+            this._componentManager.startAll(this._sandbox);
         },
 
         /**

@@ -44,6 +44,14 @@ modules.define(
             spy.callCount.should.equal(1);
             spy.getCall(0).args[1].should.be.equal(data);
         });
+
+        it('should sent a notify into sandbox for force-event', function () {
+            var spy = sinon.spy();
+            sandbox.on('force-update', spy);
+            component.start(sandbox);
+            component._view.emit('update');
+            spy.callCount.should.equal(1);
+        });
     });
 
     provide();

@@ -25,6 +25,7 @@ modules.define(
             js: {
                 inited: function () {
                     this.findBlockInside('add', 'button').on('click', this._onAddClick, this);
+                    this.findBlockInside('update', 'button').on('click', this._onUpdateClick, this);
                 }
             }
         },
@@ -46,6 +47,10 @@ modules.define(
             this._form.on('create', this._onNewEvent, this);
             this._popup.setContent(this._form);
             this._popup.show(e.target.domElem);
+        },
+
+        _onUpdateClick: function () {
+            this.emit('update');
         },
 
         _onNewEvent: function (e, model) {

@@ -25,6 +25,7 @@ modules.define(
             this._element = sandbox.getDomElement(this);
             this._view = ToolBarView.create(sandbox.getModel());
             this._view.on('create', this._onCreate, this);
+            this._view.on('update', this._onUpdate, this);
             this._element.append(this._view.domElem);
         },
 
@@ -39,6 +40,10 @@ modules.define(
 
         _onCreate: function (e, model) {
             this._sandbox.emit('new-event', model);
+        },
+
+        _onUpdate: function () {
+            this._sandbox.emit('force-update');
         }
     }, {
         getName: function () {
