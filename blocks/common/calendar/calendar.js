@@ -85,7 +85,7 @@ modules.define(
     }
 
     function getEndDate(currentDate, daysFromPrevMonth) {
-        var daysInCurrentMonth = dateUtils.daysInMonth(currentDate);
+        var daysInCurrentMonth = dateUtils.daysInMonth(currentDate.getMonth(), currentDate.getFullYear());
         var daysFromNextMonth = 7 - (daysInCurrentMonth + daysFromPrevMonth) % COLLS_NUMBER;
         var endDate = new Date(currentDate);
         endDate.setDate(endDate.getDate() + daysInCurrentMonth + daysFromNextMonth);

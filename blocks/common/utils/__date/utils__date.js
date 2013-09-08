@@ -8,21 +8,45 @@ modules.define('utils__date', function (provide) {
     var DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     provide({
-        getMonthName: function (month) {
-            return MONTH_NAMES[month];
+        /**
+         * Returns month name by index
+         * @param {Number} index
+         */
+        getMonthName: function (index) {
+            return MONTH_NAMES[index];
         },
+
+        /**
+         * Returns month index by name
+         * @param {String} name Name of month
+         */
         getMonthNumber: function (name) {
             var monthName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
             return MONTH_NAMES.indexOf(monthName);
         },
+
+        /**
+         * Returns name of week day by index
+         * @param {Number} day Day index
+         */
         getWeekDayName: function (day) {
             return DAYS[day];
         },
-        daysInMonth: function (date) {
-            var year = date.getFullYear();
-            var month = date.getMonth();
+
+        /**
+         * Returns number of days for date
+         * @param {Number} month
+         * @param {Number} year
+         */
+        daysInMonth: function (month, year) {
             return new Date(year, ++month, 0).getDate();
         },
+
+        /**
+         * Reset time for date
+         * @param {Date} date
+         * @param {Boolean} toMonthStart Resets date to first day of month
+         */
         normalize: function (date, toMonthStart) {
             if (toMonthStart) {
                 date.setDate(1);
@@ -33,6 +57,11 @@ modules.define('utils__date', function (provide) {
             date.setMilliseconds(0);
             return date;
         },
+
+        /**
+         * Formate date as a string
+         * @param {Date} d
+         */
         formatDate: function (d) {
             var date = typeof d === 'number' ? new Date(d) : d;
             return this.getMonthName(date.getMonth()) + ' ' + date.getDate() + ', ' + date.getFullYear();
