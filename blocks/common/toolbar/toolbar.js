@@ -16,17 +16,15 @@ modules.define(
         FormView
     ) {
 
+    /**
+     * Left toolbar.
+     * @augments IBemView
+     */
     provide(DOM.decl('toolbar', {
         onSetMod: {
             js: {
                 inited: function () {
-                    this.findBlockInside('add', 'button').on('click', function (e) {
-                        this._popup = Popup.create({direction: 'bottom'});
-                        this._form = FormView.create('quick-event');
-                        this._form.on('create', this._onNewEvent, this);
-                        this._popup.setContent(this._form);
-                        this._popup.show(e.target.domElem);
-                    }, this);
+                    this.findBlockInside('add', 'button').on('click', this._onAddClick, this);
                 }
             }
         },
@@ -39,17 +37,44 @@ modules.define(
             }
         },
 
+        _onAddClick: function (e) {
+            if (this._popup) {
+                this._popup.destruct();
+            }
+            this._popup = Popup.create({direction: 'bottom'});
+            this._form = FormView.create('quick-event');
+            this._form.on('create', this._onNewEvent, this);
+            this._popup.setContent(this._form);
+            this._popup.show(e.target.domElem);
+        },
+
         _onNewEvent: function (e, model) {
             this._popup.hide();
             this.emit('create', model);
         },
 
-        _setModel: function (model) {
+
+        update: function () {},
+
+        setModel: function (model) {
             this._model = model;
+            this.update();
+        },
+
+        getModel: function () {
+            return this._model;
         }
     }, {
         create: function (model) {
-            var block = DOM.init($(bh.apply({
+            var bemjson = this.getBEMJSON(model);
+            var block = DOM.init($(bh.apply(bemjson))).bem(this.getName());
+            block.setModel(model);
+
+            return block;
+        },
+
+        getBEMJSON: function () {
+            return {
                 block: 'toolbar',
                 content: [
                     {
@@ -73,10 +98,7 @@ modules.define(
                         content: 'Update'
                     }
                 ]
-            }))).bem(this.getName());
-            block._setModel(model);
-
-            return block;
+            };
         }
     }));
 

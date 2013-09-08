@@ -136,6 +136,10 @@ modules.define(
         return bemjson;
     }
 
+    /**
+     * Calendar
+     * @augments IBemView
+     */
     provide(DOM.decl('calendar', {
         onSetMod: {
             js: {
@@ -178,7 +182,11 @@ modules.define(
             }
         },
 
-        _setModel: function (model) {
+        getModel: function () {
+            return this._model;
+        },
+
+        setModel: function (model) {
             this._model = model;
             this.update();
         },
@@ -199,21 +207,26 @@ modules.define(
                 })[0];
 
                 if (model) {
-                    eventView._setModel(model);
+                    eventView.setModel(model);
                 }
             });
             this.bindTo(this.findElem('cell'), 'click', this._onCellClick);
         }
     }, {
         create: function (model) {
-            var block = DOM.init($(bh.apply({
+            var bemjson = this.getBEMJSON();
+            var block = DOM.init($(bh.apply(bemjson))).bem(this.getName());
+            block.setModel(model);
+            return block;
+        },
+
+        getBEMJSON: function () {
+            return {
                 block: 'calendar',
                 content: {
                     elem: 'content',
                 }
-            }))).bem(this.getName());
-            block._setModel(model);
-            return block;
+            };
         }
     }));
 

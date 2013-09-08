@@ -18,7 +18,7 @@ modules.define(
      * Model
      * It works only with elementary types like Number, Boolean, and etc.
      * All objects will be transoforms to Model; all arrays — to ListModel.
-     * @extends events.Emitter
+     * @augments events.Emitter
      */
     var Model = inherit(events.Emitter, {
         __constructor: function (attributes) {

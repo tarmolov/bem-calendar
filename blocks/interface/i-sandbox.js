@@ -3,6 +3,7 @@
 /**
  * @class Sandbox Interface
  * @param {Application} app
+ * @abstract
  */
 var ISandbox = function (app) {};
 

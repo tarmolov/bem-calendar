@@ -2,6 +2,7 @@
 
 /**
  * @class BEM View Interface
+ * @abstract
  */
 var IBemView = function () {};
 
@@ -31,7 +32,7 @@ IBemView.create = function (model) {};
 
 /**
  * Get BEM JSON for building block
- * @param {Model} model
+ * @param {Model|Object} model or options
  * @returns {JSON} bemjson
  */
-IBemView.getBemJSON = function (model) {};
+IBemView.getBEMJSON = function (model) {};

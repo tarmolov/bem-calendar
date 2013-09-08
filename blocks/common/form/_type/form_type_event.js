@@ -14,51 +14,10 @@ modules.define(
         dateUtils
     ) {
 
-    function createForm(model) {
-        var block = DOM.init($(bh.apply({
-            block: 'form',
-            mods: {
-                type: 'event'
-            },
-            content: [
-                {
-                    block: 'input',
-                    mix: [{block: 'form', elem: 'title'}],
-                    placeholder: 'Event name'
-                },
-                {
-                    block: 'label',
-                    mix: [{block: 'form', elem: 'date'}]
-                },
-                {
-                    block: 'input',
-                    mix: [{block: 'form', elem: 'participants'}],
-                    placeholder: 'Participants'
-                },
-                {
-                    block: 'input',
-                    mods: {type: 'textarea'},
-                    mix: [{block: 'form', elem: 'description'}],
-                    placeholder: 'Desription'
-                },
-                {
-                    block: 'button',
-                    mods: {theme: 'shadow'},
-                    mix: [{block: 'form', elem: 'save'}],
-                    content: 'Save'
-                },
-                {
-                    block: 'button',
-                    mods: {theme: 'shadow'},
-                    mix: [{block: 'form', elem: 'delete'}],
-                    content: 'Delete'
-                }
-            ]
-        }))).bem('form');
-        block._setModel(model);
-        return block;
-    }
-
+    /**
+     * Event form
+     * @augments IBemView
+     */
     provide(DOM.decl({block: 'form', modName: 'type', modVal: 'event'}, {
         onSetMod: {
             js: {
@@ -92,15 +51,69 @@ modules.define(
             this.findBlockInside('description', 'input').setValue(this._model.get('description'));
         },
 
-        _setModel: function (model) {
+        getModel: function () {
+            return this._model;
+        },
+
+        setModel: function (model) {
             this._model = model;
             this.update();
         }
 
     }, {
         create: function (type, model) {
+            if (type === 'event') {
+                var bemjson = this.getBEMJSON(type);
+                var block = DOM.init($(bh.apply(bemjson))).bem(this.getName());
+                block.setModel(model);
+                return block;
+            } else {
+                return this.__base.apply(this, arguments);
+            }
+        },
+
+        getBEMJSON: function (type) {
             return type === 'event' ?
-                createForm(model):
+                {
+                    block: 'form',
+                    mods: {
+                        type: 'event'
+                    },
+                    content: [
+                        {
+                            block: 'input',
+                            mix: [{block: 'form', elem: 'title'}],
+                            placeholder: 'Event name'
+                        },
+                        {
+                            block: 'label',
+                            mix: [{block: 'form', elem: 'date'}]
+                        },
+                        {
+                            block: 'input',
+                            mix: [{block: 'form', elem: 'participants'}],
+                            placeholder: 'Participants'
+                        },
+                        {
+                            block: 'input',
+                            mods: {type: 'textarea'},
+                            mix: [{block: 'form', elem: 'description'}],
+                            placeholder: 'Desription'
+                        },
+                        {
+                            block: 'button',
+                            mods: {theme: 'shadow'},
+                            mix: [{block: 'form', elem: 'save'}],
+                            content: 'Save'
+                        },
+                        {
+                            block: 'button',
+                            mods: {theme: 'shadow'},
+                            mix: [{block: 'form', elem: 'delete'}],
+                            content: 'Delete'
+                        }
+                    ]
+                } :
                 this.__base.apply(this, arguments);
         }
     }));

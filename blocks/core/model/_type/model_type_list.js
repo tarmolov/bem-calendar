@@ -3,7 +3,7 @@ modules.define('model_type_list', ['inherit', 'events'], function (provide, inhe
     /**
      * List of models
      * List works only with models
-     * @extends events.Emitter
+     * @augments events.Emitter
      */
     provide(inherit(events.Emitter, {
         __constructor: function (models) {

@@ -2,6 +2,7 @@
 
 /**
  * @class Component Interface
+ * @abstract
  */
 var IComponent = function () {};
 

@@ -16,6 +16,10 @@ modules.define(
         FormEvent
     ) {
 
+    /**
+     * Calendar event
+     * @augments IBemView
+     */
     provide(DOM.decl('event', {
         onSetMod: {
             js: {
@@ -69,7 +73,7 @@ modules.define(
             return this._model;
         },
 
-        _setModel: function (model) {
+        setModel: function (model) {
             if (this._model) {
                 this._model.un('change', this.update, this);
             }
@@ -81,7 +85,7 @@ modules.define(
         create: function (model) {
             var bemjson = this.getBEMJSON(model);
             var block = DOM.init($(bh.apply(bemjson))).bem(this.getName());
-            block._setModel(model);
+            block.setModel(model);
 
             return block;
         },

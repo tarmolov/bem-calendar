@@ -16,30 +16,6 @@ modules.define(
         Model
     ) {
 
-    function createForm(model) {
-        var block = DOM.init($(bh.apply({
-            block: 'form',
-            mods: {
-                type: 'quick-event'
-            },
-            content: [
-                {
-                    block: 'input',
-                    mix: [{block: 'form', elem: 'title'}],
-                    placeholder: 'March 5, My birthday'
-                },
-                {
-                    block: 'button',
-                    mods: {theme: 'shadow'},
-                    mix: [{block: 'form', elem: 'add'}],
-                    content: 'Add'
-                }
-            ]
-        }))).bem('form');
-        block._setModel(model);
-        return block;
-    }
-
     provide(DOM.decl({block: 'form', modName: 'type', modVal: 'quick-event'}, {
         onSetMod: {
             js: {
@@ -67,18 +43,50 @@ modules.define(
             }
         },
 
-        update: function () {
+        update: function () {},
+
+        getModel: function () {
+            return this._model;
         },
 
-        _setModel: function (model) {
+        setModel: function (model) {
             this._model = model;
             this.update();
         }
 
     }, {
         create: function (type, model) {
+            if (type === 'quick-event') {
+                var bemjson = this.getBEMJSON(type);
+                var block = DOM.init($(bh.apply(bemjson))).bem(this.getName());
+                block.setModel(model);
+                return block;
+            } else {
+                return this.__base.apply(this, arguments);
+            }
+        },
+
+        getBEMJSON: function (type) {
             return type === 'quick-event' ?
-                createForm(model):
+                {
+                    block: 'form',
+                    mods: {
+                        type: 'quick-event'
+                    },
+                    content: [
+                        {
+                            block: 'input',
+                            mix: [{block: 'form', elem: 'title'}],
+                            placeholder: 'March 5, My birthday'
+                        },
+                        {
+                            block: 'button',
+                            mods: {theme: 'shadow'},
+                            mix: [{block: 'form', elem: 'add'}],
+                            content: 'Add'
+                        }
+                    ]
+                }:
                 this.__base.apply(this, arguments);
         }
     }));
