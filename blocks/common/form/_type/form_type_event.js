@@ -98,7 +98,7 @@ modules.define(
                             block: 'input',
                             mods: {type: 'textarea'},
                             mix: [{block: 'form', elem: 'description'}],
-                            placeholder: 'Desription'
+                            placeholder: 'Description'
                         },
                         {
                             block: 'button',
