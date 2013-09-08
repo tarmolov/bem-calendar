@@ -1,5 +1,5 @@
 # BEM Calendar
-This is an assigment for entering Frontend Developer School by [hh.ru](http://hh.ru/locale.do?language=EN).
+This is the assigment for entering Frontend Developer School by [hh.ru](http://hh.ru/locale.do?language=EN). For more details see [requirements of the assigment](doc/issue/README.en.md) (or [original Russian version of the assigment](doc/issue/README.ru.md)).
 
 Project based on [ideas of Nikolas Zakas](http://www.slideshare.net/nzakas/scalable-javascript-application-architecture) and developed using [BEM methodology](http://bem.info).
 
