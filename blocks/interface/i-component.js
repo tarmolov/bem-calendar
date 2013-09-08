@@ -21,11 +21,11 @@ IComponent.prototype = {
      * Returs current component state
      * @returns {Boolean}
      */
-    isStarted: function () {},
-
-    /**
-     * Returs ID component
-     * @returns {Boolean}
-     */
-    getName: function () {}
+    isStarted: function () {}
 };
+
+/**
+ * Returs ID component
+ * @returns {Boolean}
+ */
+IComponent.getName = function () {};

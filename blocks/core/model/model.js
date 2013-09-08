@@ -16,7 +16,7 @@ modules.define(
 
     var Model = inherit(events.Emitter, {
         __constructor: function (attributes) {
-            this.__base();
+            this.__base.apply(this, arguments);
             this._attributes = attributes || {};
             this._init();
         },

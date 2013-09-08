@@ -16,6 +16,9 @@ modules.define(
         DOM
     ) {
 
+    /**
+     * Calendar
+     */
     provide(inherit(BaseComponent, {
         start: function (sandbox) {
             this.__base.apply(this, arguments);
@@ -36,6 +39,7 @@ modules.define(
             this._sandbox.un('new-event', this._onNewEvent, this);
 
             DOM.destruct(this._view.domElem);
+
             this._view = null;
             this._element = null;
             this._sandbox = null;

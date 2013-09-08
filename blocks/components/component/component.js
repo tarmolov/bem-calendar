@@ -1,5 +1,9 @@
 modules.define('component', ['inherit'], function (provide, inherit) {
 
+    /**
+     * Base component
+     * @implements IComponent
+     */
     provide(inherit({
         _isStarted: false,
 

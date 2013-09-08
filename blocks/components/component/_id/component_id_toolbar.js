@@ -14,9 +14,12 @@ modules.define(
         DOM
     ) {
 
+    /**
+     * Toolbar with actions
+     */
     provide(inherit(BaseComponent, {
         start: function (sandbox) {
-            this.__base();
+            this.__base.apply(this, arguments);
 
             this._sandbox = sandbox;
             this._element = sandbox.getDomElement(this);

@@ -14,6 +14,9 @@ modules.define(
         DOM
     ) {
 
+    /**
+     * Search events
+     */
     provide(inherit(BaseComponent, {
         start: function (sandbox) {
             this.__base.apply(this, arguments);

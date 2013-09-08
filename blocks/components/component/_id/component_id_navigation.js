@@ -14,6 +14,9 @@ modules.define(
         DOM
     ) {
 
+    /**
+     * Navigation for calendar
+     */
     provide(inherit(BaseComponent, {
         start: function (sandbox) {
             this.__base.apply(this, arguments);
