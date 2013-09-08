@@ -4,10 +4,13 @@ modules.define(
     function (provide, SyncComponent, Sandbox, Model, sinon) {
 
     describe('SyncComponent', function () {
+        /*jshint unused:false*/
         var component;
         var model;
         var sandbox;
         var getDomElement;
+        var getItem = sinon.stub(localStorage, 'getItem').returns('{"test":2}');
+        var setItem = sinon.stub(localStorage, 'setItem');
 
         beforeEach(function () {
             sandbox = new Sandbox();
@@ -18,17 +21,18 @@ modules.define(
 
         it('should save model to localstorage', function () {
             var _onModelChanged = sinon.spy(component, '_onModelChanged');
-            var setValue = sinon.spy(localStorage, 'setItem');
             component.start(sandbox);
             model.set('test', 1);
             _onModelChanged.callCount.should.equal(1);
-            setValue.callCount.should.equal(1);
+            setItem.callCount.should.equal(1);
         });
 
-        it('should returns data from localstorage', function () {
-            var data = {test: 2};
-            localStorage.setItem('bem-calendar', JSON.stringify(data));
-            JSON.stringify(SyncComponent.getData()).should.be.equal(JSON.stringify(data));
+        it('should returns correct data from localstorage', function () {
+            var data = SyncComponent.getData();
+            data.test.should.be.equal(2);
+            data.currentDate.should.be.a('number');
+            data.selectedDate.should.be.a('number');
+            data.events.length.should.be.equal(0);
         });
     });
 

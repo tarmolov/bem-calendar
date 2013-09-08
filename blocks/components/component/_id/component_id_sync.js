@@ -2,12 +2,14 @@ modules.define(
     'component_id_sync',
     [
         'inherit',
-        'component'
+        'component',
+        'jquery'
     ],
     function (
         provide,
         inherit,
-        BaseComponent
+        BaseComponent,
+        $
     ) {
 
     var LOCALSTORAGE_FIELD = 'bem-calendar';
@@ -44,12 +46,31 @@ modules.define(
         },
 
         /**
+         * Extends data by default values
+         * @param {Object} data
+         * @returns {Object} preprocessedData
+         */
+        _preprocessData: function (data) {
+            var now = (new Date()).getTime();
+            return $.extend(
+                {
+                    events: []
+                },
+                data,
+                {
+                    currentDate: now,
+                    selectedDate: now
+                }
+            );
+        },
+
+        /**
          * Returns data from localStorage
          * @returns {JSON} data
          */
         getData: function () {
             var data = localStorage.getItem(LOCALSTORAGE_FIELD);
-            return JSON.parse(data);
+            return this._preprocessData(JSON.parse(data));
         }
     }));
 
