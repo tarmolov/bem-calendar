@@ -3,7 +3,7 @@ modules.define(
     ['component_id_sync', 'sandbox', 'model', 'sinon'],
     function (provide, SyncComponent, Sandbox, Model, sinon) {
 
-    describe('SyncComponent', function () {
+    describe('component_id_sync', function () {
         /*jshint unused:false*/
         var component;
         var model;

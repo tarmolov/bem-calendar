@@ -3,7 +3,7 @@ modules.define(
     ['component'],
     function (provide, BaseComponent) {
 
-    describe('BaseComponent', function () {
+    describe('component', function () {
         var component;
 
         beforeEach(function () {

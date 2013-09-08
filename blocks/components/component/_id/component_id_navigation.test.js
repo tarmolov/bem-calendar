@@ -3,7 +3,7 @@ modules.define(
     ['component_id_navigation', 'jquery', 'sandbox', 'model', 'sinon'],
     function (provide, NavigationComponent, $, Sandbox, Model, sinon) {
 
-    describe('NavigationComponent', function () {
+    describe('component_id_navigation', function () {
         var component;
         var domElem;
         var model;

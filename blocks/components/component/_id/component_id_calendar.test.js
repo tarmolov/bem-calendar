@@ -3,7 +3,7 @@ modules.define(
     ['component_id_calendar', 'jquery', 'sandbox', 'model', 'sinon', 'i-bem__dom'],
     function (provide, CalendarComponent, $, Sandbox, Model, sinon, DOM) {
 
-    describe('CalendarComponent', function () {
+    describe('component_id_calendar', function () {
         var component;
         var domElem;
         var model;

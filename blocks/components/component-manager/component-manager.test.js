@@ -3,7 +3,7 @@ modules.define(
     ['component-manager', 'jquery', 'should', 'sinon'],
     function (provide, ComponentManager, $, should, sinon) {
 
-    describe('ComponentManager', function () {
+    describe('component-manager', function () {
         var manager;
         var isStarted;
         var start;

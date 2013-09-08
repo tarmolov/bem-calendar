@@ -3,7 +3,7 @@ modules.define(
     ['component_id_toolbar', 'jquery', 'sandbox', 'model', 'sinon'],
     function (provide, ToolbarComponent, $, Sandbox, Model, sinon) {
 
-    describe('ToolbarComponent', function () {
+    describe('component_id_toolbar', function () {
         var component;
         var domElem;
         var model;

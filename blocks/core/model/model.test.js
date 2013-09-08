@@ -3,7 +3,7 @@ modules.define(
     ['model', 'model_type_list', 'sinon'],
     function (provide, Model, ListModel, sinon) {
 
-    describe('Model', function () {
+    describe('model', function () {
         var model;
 
         beforeEach(function () {

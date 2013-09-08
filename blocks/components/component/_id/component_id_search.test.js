@@ -3,7 +3,7 @@ modules.define(
     ['component_id_search', 'jquery', 'sandbox', 'sinon'],
     function (provide, SearchComponent, $, Sandbox, sinon) {
 
-    describe('SearchComponent', function () {
+    describe('component_id_search', function () {
         var component;
         var domElem;
         var sandbox;
