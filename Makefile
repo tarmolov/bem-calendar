@@ -27,6 +27,16 @@ test:
 build:
 	YENV=$(YENV) $(ENB) make
 
+# Deploy application to gh-pages
+deploy:
+	YENV=production make build
+	git clone -b gh-pages git@github.com:tarmolov/bem-calendar.git deploy && cd deploy && rm -rf *
+	rsync -avz --stats --include "*.html" --include "_*.css" --include "_*.js" pages/ deploy/pages
+	rsync -avz --stats i/ deploy/i
+	cd deploy && git add -A && git commit -m "update doc" && git push origin gh-pages
+	rm -rf deploy
+	rm -rf i
+
 # Run server
 server:
 	@$(ENB) server
