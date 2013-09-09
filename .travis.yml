@@ -1,7 +1,7 @@
 language: node_js
-
 node_js:
-    - 0.8
-
-after_script:
-    - make deploy
+- 0.8
+after_success: ./update-gh-pages.sh
+env:
+  global:
+    secure: KoFb5tt9bStG7oQmjIP5eyGgtTma7JzAqsmqWTkhdwq155UV/q97t3ZIDniwRFH2IGNhZwXZB2V+QYOXkDFV3tAOCEuovFt3cZl4yvmMW8usrd4WfUCZuRWcyeJCoYhieBOUrdMIIExg3RqRzMycKQgN3XYzYXZxfOGI7SwUytI=
