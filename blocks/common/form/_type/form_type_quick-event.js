@@ -33,11 +33,11 @@ modules.define(
 
         _onCreateClick: function () {
             var str = this.findBlockInside('title', 'input').getValue();
-            // Format: <month> <date>[, <title>]
-            var matches = str.match(/(\w+)\s+(\d+)(?:\W+(\w+))*/);
+            // Format: [<month> ]<date>[, <title>]
+            var matches = str.match(/(?:(\w+)\s+)*(\d+)(?:\W+(\w+))*/);
             if (matches) {
-                var month = dateUtils.getMonthNumber(matches[1]);
                 var now = new Date();
+                var month = dateUtils.getMonthNumber(matches[1] || '');
                 var year = now.getFullYear();
                 var day = Number(matches[2]);
                 this.emit('create', new Model({
