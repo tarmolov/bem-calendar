@@ -36,7 +36,6 @@ make
 Then open the link in your [favorite browser](http://browser.yandex.com/):
 ```
 http://localhost:8080/pages/calendar/calendar.html
-
 ```
 ### Build project and run enb server
 ```
