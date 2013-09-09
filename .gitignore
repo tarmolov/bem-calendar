@@ -1,6 +1,6 @@
 */*/*.js
 */*/*.css
-*/blocks/
+*/*/blocks/
 !*/*/*.html
 !*/*/_*.css
 !*/*/_*.js
