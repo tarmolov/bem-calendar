@@ -138,7 +138,7 @@ modules.define(
 
     /**
      * Calendar
-     * @augments IBemView
+     * @mixin bemview
      */
     provide(DOM.decl('calendar', {
         onSetMod: {
@@ -182,16 +182,8 @@ modules.define(
             }
         },
 
-        getModel: function () {
-            return this._model;
-        },
-
-        setModel: function (model) {
-            this._model = model;
-            this.update();
-        },
-
         update: function () {
+            this.__base.apply(this, arguments);
             var bemjson = getRowsJSON(this._model);
 
             DOM.update(this.domElem, bh.apply({
@@ -213,13 +205,6 @@ modules.define(
             this.bindTo(this.findElem('cell'), 'click', this._onCellClick);
         }
     }, {
-        create: function (model) {
-            var bemjson = this.getBEMJSON();
-            var block = DOM.init($(bh.apply(bemjson))).bem(this.getName());
-            block.setModel(model);
-            return block;
-        },
-
         getBEMJSON: function () {
             return {
                 block: 'calendar',

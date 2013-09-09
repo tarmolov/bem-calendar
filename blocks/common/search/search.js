@@ -1,26 +1,10 @@
-modules.define('search', ['i-bem__dom', 'jquery', 'bh'], function (provide, DOM, $, bh) {
+modules.define('search', ['i-bem__dom'], function (provide, DOM) {
 
     /**
      * Search.
-     * @augments IBemView
+     * @mixin bemview
      */
-    provide(DOM.decl('search', {
-        update: function () {},
-
-        setModel: function (model) {
-            this._model = model;
-            this.update();
-        },
-
-        getModel: function () {
-            return this._model;
-        }
-    }, {
-        create: function () {
-            var bemjson = this.getBEMJSON();
-            return DOM.init($(bh.apply(bemjson))).bem(this.getName());
-        },
-
+    provide(DOM.decl('search', {}, {
         getBEMJSON: function () {
             return {
                 block: 'search', placeholder: 'Event, date, or participant'

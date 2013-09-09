@@ -16,7 +16,7 @@ modules.define(
 
     /**
      * Event form
-     * @augments IBemView
+     * @mixin bemview
      */
     provide(DOM.decl({block: 'form', modName: 'type', modVal: 'event'}, {
         onSetMod: {
@@ -44,36 +44,17 @@ modules.define(
         },
 
         update: function () {
+            this.__base.apply(this, arguments);
             var date = new Date(this._model.get('date'));
             this.findBlockInside('date', 'label').setText(dateUtils.formatDate(date));
             this.findBlockInside('title', 'input').setValue(this._model.get('title'));
             this.findBlockInside('participants', 'input').setValue(this._model.get('participants'));
             this.findBlockInside('description', 'input').setValue(this._model.get('description'));
-        },
-
-        getModel: function () {
-            return this._model;
-        },
-
-        setModel: function (model) {
-            this._model = model;
-            this.update();
         }
 
     }, {
-        create: function (type, model) {
-            if (type === 'event') {
-                var bemjson = this.getBEMJSON(type);
-                var block = DOM.init($(bh.apply(bemjson))).bem(this.getName());
-                block.setModel(model);
-                return block;
-            } else {
-                return this.__base.apply(this, arguments);
-            }
-        },
-
-        getBEMJSON: function (type) {
-            return type === 'event' ?
+        getBEMJSON: function (model, options) {
+            return options && options.type === 'event' ?
                 {
                     block: 'form',
                     mods: {

@@ -1,10 +1,9 @@
 module.exports = function (bh) {
 
-    bh.match('event', function (ctx) {
+    bh.match('toolbar', function (ctx) {
         ctx.mix([
             {block: 'bemview'}
         ]);
-        ctx.js(true);
     });
 
 };

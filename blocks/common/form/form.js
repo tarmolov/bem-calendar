@@ -12,8 +12,7 @@ modules.define('i-bem__dom', function (provide, DOM) {
         _onSubmit: function (e) {
             e.preventDefault();
             this.emit('submit');
-        },
-
+        }
     });
 
     provide(DOM);

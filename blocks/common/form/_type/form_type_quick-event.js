@@ -16,6 +16,10 @@ modules.define(
         Model
     ) {
 
+    /**
+     * Form for quck adding new event
+     * @mixin bemview
+     */
     provide(DOM.decl({block: 'form', modName: 'type', modVal: 'quick-event'}, {
         onSetMod: {
             js: {
@@ -41,33 +45,10 @@ modules.define(
                     title: matches[3]
                 }));
             }
-        },
-
-        update: function () {},
-
-        getModel: function () {
-            return this._model;
-        },
-
-        setModel: function (model) {
-            this._model = model;
-            this.update();
         }
-
     }, {
-        create: function (type, model) {
-            if (type === 'quick-event') {
-                var bemjson = this.getBEMJSON(type);
-                var block = DOM.init($(bh.apply(bemjson))).bem(this.getName());
-                block.setModel(model);
-                return block;
-            } else {
-                return this.__base.apply(this, arguments);
-            }
-        },
-
-        getBEMJSON: function (type) {
-            return type === 'quick-event' ?
+        getBEMJSON: function (model, options) {
+            return options && options.type === 'quick-event' ?
                 {
                     block: 'form',
                     mods: {
