@@ -4,6 +4,8 @@ This is [the assigment](doc/issue/README.en.md) for entering Frontend Developer 
 
 Project based on [ideas of Nikolas Zakas](http://www.slideshare.net/nzakas/scalable-javascript-application-architecture) and developed using [BEM methodology](http://bem.info).
 
+## [View demo](http://tarmolov.github.io/bem-calendar/pages/calendar/calendar.html)
+
 ## Project structure
 ```
 .bem                ENB config for building project
