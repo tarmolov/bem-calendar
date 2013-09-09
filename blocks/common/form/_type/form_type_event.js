@@ -64,7 +64,7 @@ modules.define(
                         {
                             block: 'input',
                             mix: [{block: 'form', elem: 'title'}],
-                            placeholder: 'Event name'
+                            placeholder: 'Event title'
                         },
                         {
                             block: 'label',
