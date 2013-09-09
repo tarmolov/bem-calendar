@@ -2,19 +2,23 @@ modules.define(
     'event',
     [
         'i-bem__dom',
+        'jquery',
+        'bh',
         'popup',
         'form_type_event'
     ],
     function (
         provide,
         DOM,
+        $,
+        bh,
         Popup,
         FormEvent
     ) {
 
     /**
      * Calendar event
-     * @mixin bemview
+     * @augments IBemView
      */
     provide(DOM.decl('event', {
         onSetMod: {
@@ -60,20 +64,32 @@ modules.define(
             this.emit('delete', this._model);
         },
 
+        getModel: function () {
+            return this._model;
+        },
+
+        setModel: function (model) {
+            if (this._model) {
+                this._model.un('change', this.update, this);
+            }
+            this._model = model;
+            this.update();
+            this._model.on('change', this.update, this);
+        },
+
         update: function () {
             this.__base.apply(this, arguments);
             this.elem('title').html(this._model.get('title'));
             this.elem('participants').html(this._model.get('participants'));
-        },
-
-        setModel: function () {
-            if (this._model) {
-                this._model.un('change', this.update, this);
-            }
-            this.__base.apply(this, arguments);
-            this._model.on('change', this.update, this);
         }
     }, {
+        create: function (model, options) {
+            var bemjson = this.getBEMJSON(model, options);
+            var block = DOM.init($(bh.apply(bemjson))).bem(this.getName());
+            block.setModel(model);
+            return block;
+        },
+
         getBEMJSON: function (model) {
             return {
                 block: 'event',

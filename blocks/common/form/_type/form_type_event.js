@@ -16,7 +16,6 @@ modules.define(
 
     /**
      * Event form
-     * @mixin bemview
      */
     provide(DOM.decl({block: 'form', modName: 'type', modVal: 'event'}, {
         onSetMod: {

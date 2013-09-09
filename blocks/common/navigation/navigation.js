@@ -1,4 +1,4 @@
-modules.define('navigation', ['i-bem__dom', 'utils__date'], function (provide, DOM, dateUtils) {
+modules.define('navigation', ['i-bem__dom', 'jquery', 'bh', 'utils__date'], function (provide, DOM, $, bh, dateUtils) {
 
     function formatTitle(time) {
         var date = new Date(time);
@@ -9,7 +9,7 @@ modules.define('navigation', ['i-bem__dom', 'utils__date'], function (provide, D
 
     /**
      * Navigation
-     * @mixin bemview
+     * @augments IBemView
      */
     provide(DOM.decl('navigation', {
         onSetMod: {
@@ -45,17 +45,28 @@ modules.define('navigation', ['i-bem__dom', 'utils__date'], function (provide, D
             this._model.set('currentDate', new Date().getTime());
         },
 
-        update: function () {
-            this.__base.apply(this, arguments);
-            var title = formatTitle(this._model.get('currentDate'));
-            DOM.update(this.elem('title'), title);
+        getModel: function () {
+            return this._model;
         },
 
-        setModel: function () {
-            this.__base.apply(this, arguments);
+        setModel: function (model) {
+            this._model = model;
+            this.update();
             this._model.on('change:currentDate', this.update, this);
+        },
+
+        update: function () {
+            var title = formatTitle(this._model.get('currentDate'));
+            DOM.update(this.elem('title'), title);
         }
     }, {
+        create: function (model, options) {
+            var bemjson = this.getBEMJSON(model, options);
+            var block = DOM.init($(bh.apply(bemjson))).bem(this.getName());
+            block.setModel(model);
+            return block;
+        },
+
         getBEMJSON: function () {
             return {
                 block: 'navigation',

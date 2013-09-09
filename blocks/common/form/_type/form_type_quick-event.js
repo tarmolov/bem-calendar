@@ -18,7 +18,6 @@ modules.define(
 
     /**
      * Form for quck adding new event
-     * @mixin bemview
      */
     provide(DOM.decl({block: 'form', modName: 'type', modVal: 'quick-event'}, {
         onSetMod: {

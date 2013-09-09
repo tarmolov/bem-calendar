@@ -1,9 +1,6 @@
 module.exports = function (bh) {
 
     bh.match('search', function (ctx) {
-        ctx.mix([
-            {block: 'bemview'}
-        ]);
         ctx.content([
             {
                 block: 'icon',

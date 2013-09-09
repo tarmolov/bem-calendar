@@ -2,19 +2,23 @@ modules.define(
     'toolbar',
     [
         'i-bem__dom',
+        'jquery',
+        'bh',
         'popup',
         'form_type_quick-event'
     ],
     function (
         provide,
         DOM,
+        $,
+        bh,
         Popup,
         FormView
     ) {
 
     /**
      * Left toolbar.
-     * @mixin bemview
+     * @augments IBemView
      */
     provide(DOM.decl('toolbar', {
         onSetMod: {
@@ -52,8 +56,26 @@ modules.define(
         _onNewEvent: function (e, model) {
             this._popup.hide();
             this.emit('create', model);
+        },
+
+        update: function () {},
+
+        getModel: function () {
+            return this._model;
+        },
+
+        setModel: function (model) {
+            this._model = model;
+            this.update();
         }
     }, {
+        create: function (model, options) {
+            var bemjson = this.getBEMJSON(model, options);
+            var block = DOM.init($(bh.apply(bemjson))).bem(this.getName());
+            block.setModel(model);
+            return block;
+        },
+
         getBEMJSON: function () {
             return {
                 block: 'toolbar',
