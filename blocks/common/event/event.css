@@ -1,38 +1,41 @@
 .event
 {
+    line-height: 18px;
+
     position: absolute;
     top: -2px;
-    left: -2px;
     right: -2px;
     bottom: -2px;
+    left: -2px;
+
+    overflow: hidden;
 
     padding: 33px 8px 8px;
 
-    overflow: hidden;
-    line-height: 18px;
-
-    background: rgba(100,183,243,0.2);
-    border: solid 1px #64B7F3;
+    border: solid 1px #64b7f3;
+    background: rgba(100,183,243,.2);
 }
 
 .event__title
 {
     font-weight: bold;
 
+    overflow: hidden;
+
     margin-bottom: 4px;
 
-    overflow: hidden;
-    text-overflow: ellipsis;
     white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .event__participants
 {
+    display: -webkit-box;
+    overflow: hidden;
+
     max-height: 72px;
 
-    overflow: hidden;
     text-overflow: -o-ellipsis-lastline;
-    display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
 }

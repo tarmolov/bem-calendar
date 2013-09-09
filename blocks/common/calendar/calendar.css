@@ -4,9 +4,8 @@
 
     width: 100%;
 
-    border-collapse: collapse;
-
     color: #999;
+    border-collapse: collapse;
 }
 
 .calendar__cell
@@ -14,10 +13,10 @@
     width: 14.3%;
     height: 130px;
 
+    cursor: pointer;
     vertical-align: top;
 
     border: 1px solid #999;
-    cursor: pointer;
 }
 
 .calendar__cell-title
@@ -37,5 +36,5 @@
 {
     font-weight: bold;
 
-    background: #F4F4F4;
+    background: #f4f4f4;
 }

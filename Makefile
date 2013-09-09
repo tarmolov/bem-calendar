@@ -14,6 +14,10 @@ lint:
 	@$(NPM_BIN)/jshint-groups
 	@$(NPM_BIN)/jscs .
 
+# Sort css properties
+csscomb:
+	@$(NPM_BIN)/csscomb .
+
 # Build and run tests
 test:
 	$(ENB) make test -n

@@ -13,6 +13,7 @@
     },
     "devDependencies": {
         "chai": "1.7.2",
+        "csscomb": "0.0.10",
         "enb": "0.8.32",
         "enb-modules": "0.0.14",
         "git-hooks": "0.0.3",

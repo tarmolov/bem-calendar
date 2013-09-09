@@ -4,21 +4,21 @@
     height: 45px;
     padding-top: 55px;
 
-    background: #F4F4F4;
-    box-shadow: 0px 2px 8px rgba(160,160,160,0.5);
+    background: #f4f4f4;
+    box-shadow: 0 2px 8px rgba(160,160,160,.5);
 }
 
 .head__toolbar
 {
-    padding-left: 50px;
-
     float: left;
+
+    padding-left: 50px;
 }
 
 .head__search
 {
+    float: right;
+
     width: 200px;
     padding-right: 64px;
-
-    float: right;
 }

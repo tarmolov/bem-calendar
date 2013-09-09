@@ -44,8 +44,8 @@
     top: 50%;
     left: 50%;
 
-    width: 0px;
-    height: 0px;
+    width: 0;
+    height: 0;
     margin-top: -3px;
     margin-left: -2px;
 
@@ -57,13 +57,13 @@
 .navigation__left:after
 {
     border-width: 3px 3px 3px 0;
-    border-color: transparent #000000 transparent transparent;
+    border-color: transparent #000 transparent transparent;
 }
 
 .navigation__right:after
 {
     border-width: 3px 0 3px 3px;
-    border-color: transparent transparent transparent #000000;
+    border-color: transparent transparent transparent #000;
 }
 
 .navigation__today
