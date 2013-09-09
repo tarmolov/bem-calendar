@@ -29,8 +29,16 @@ modules.define(
                 bh.processBemJson({block: 'button'}).tag.should.be.equal('button');
             });
 
+            it('should have `button` type by default', function () {
+                bh.processBemJson({block: 'button'}).attrs.type.should.be.equal('button');
+            });
+
             it('should have `js` attr', function () {
                 bh.processBemJson({block: 'button'}).js.should.be.true;
+            });
+
+            it('should set up button type', function () {
+                bh.processBemJson({block: 'button', type: 'submit'}).attrs.type.should.be.equal('submit');
             });
         });
 

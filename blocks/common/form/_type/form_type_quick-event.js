@@ -27,6 +27,7 @@ modules.define(
                     this.__base.apply(this, arguments);
 
                     this.findBlockInside('add', 'button').on('click', this._onCreateClick, this);
+                    this.on('submit', this._onCreateClick, this);
                 }
             }
         },
