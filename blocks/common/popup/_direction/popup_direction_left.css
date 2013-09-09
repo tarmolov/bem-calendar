@@ -1,9 +1,0 @@
-.popup_direction_left::after
-{
-    top: 50%;
-    right: -7px;
-
-    margin-top: -7px;
-
-    box-shadow: 2px -2px 3px 0 rgba(217,217,217,.8);
-}

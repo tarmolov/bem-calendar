@@ -1,9 +1,0 @@
-- bemview
-- form
-- popup
-- block: input
-  mods:
-    type: textarea
-- block: button
-  mods:
-    theme: shadow

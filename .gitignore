@@ -1,11 +1,6 @@
-.bem/tmp
-node_modules/
-pages/*/*.*
-!pages/*/*.bemjson.js
-test/*
-!test/blocks
-!test/test.html
-!test/mocha.js
-!test/mocha.css
-!test/chai.js
-!test/sinon.js
+*/*/*.js
+*/*/*.css
+*/blocks/
+!*/*/*.html
+!*/*/_*.css
+!*/*/_*.js
