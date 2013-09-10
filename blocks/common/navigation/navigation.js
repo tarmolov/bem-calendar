@@ -10,7 +10,8 @@ modules.define(
         provide,
         DOM,
         $,
-        bh, dateUtils
+        bh,
+        dateUtils
     ) {
 
     function formatTitle(time) {
