@@ -1,4 +1,17 @@
-modules.define('navigation', ['i-bem__dom', 'jquery', 'bh', 'utils__date'], function (provide, DOM, $, bh, dateUtils) {
+modules.define(
+    'navigation',
+    [
+        'i-bem__dom',
+        'jquery',
+        'bh',
+        'utils__date'
+    ],
+    function (
+        provide,
+        DOM,
+        $,
+        bh, dateUtils
+    ) {
 
     function formatTitle(time) {
         var date = new Date(time);

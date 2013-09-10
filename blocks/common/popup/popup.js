@@ -1,4 +1,16 @@
-modules.define('popup', ['i-bem__dom', 'jquery', 'bh'], function (provide, DOM, $, bh) {
+modules.define(
+    'popup',
+    [
+        'i-bem__dom',
+        'jquery',
+        'bh'
+    ],
+    function (
+        provide,
+        DOM,
+        $,
+        bh
+    ) {
 
     var TAIL_SIZE = 14;
 

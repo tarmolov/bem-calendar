@@ -1,4 +1,16 @@
-modules.define('search', ['i-bem__dom', 'jquery', 'bh'], function (provide, DOM, $, bh) {
+modules.define(
+    'search',
+    [
+        'i-bem__dom',
+        'jquery',
+        'bh'
+    ],
+    function (
+        provide,
+        DOM,
+        $,
+        bh
+    ) {
 
     /**
      * Search.
