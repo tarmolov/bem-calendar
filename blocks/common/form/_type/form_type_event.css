@@ -21,3 +21,8 @@
     height: 95px;
     margin: 30px 0 20px 0;
 }
+
+.form_type_event .form__save
+{
+    margin-right: 5px;
+}
