@@ -40,6 +40,9 @@ modules.define(
             this.openPopup();
         },
 
+        /**
+         * Show event popup
+         */
         openPopup: function () {
             var popup = this.__self.getPopup();
             this._form = FormEvent.create(this._model, {type: 'event'});
@@ -50,13 +53,18 @@ modules.define(
             this._form.on('delete', this._onDelete, this);
         },
 
+        /**
+         * Hide event popup
+         */
         closePopup: function () {
             this._form.destruct();
+            this._form = null;
             this.__self.getPopup().hide();
         },
 
         _onSave: function () {
             this.closePopup();
+            this.emit('save');
         },
 
         _onDelete: function () {
@@ -101,6 +109,11 @@ modules.define(
             };
         },
 
+        /**
+         * Returns popup
+         * Singleton
+         * @returns {Popup} popup
+         */
         getPopup: function () {
             if (!this._popup) {
                 this._popup = this._createPopup();
@@ -108,6 +121,10 @@ modules.define(
             return this._popup;
         },
 
+        /**
+         * Create a new popup
+         * @returns {Popup} popup
+         */
         _createPopup: function () {
             return Popup.create({
                 direction: 'right'
