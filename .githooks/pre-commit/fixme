@@ -1,0 +1,8 @@
+#!/bin/bash
+#
+# Prevent fixme notes
+#
+git diff --cached --diff-filter=ACMR | grep ^+ | grep FIXME --color &&
+    echo -e "You probably didn't want to commit these lines.\n#   (use \"git commit -n \" to avoid this check)" &&
+    exit 1
+exit 0
