@@ -56,15 +56,12 @@ modules.define('popup', ['i-bem__dom', 'jquery', 'bh'], function (provide, DOM, 
             var win = $(window);
             var windowWidth = win.width();
             var windowHeight = win.height();
-            var windowScrollTop = win.scrollTop();
-            var windowScrollLeft = win.scrollLeft();
 
-            // FIXME: Left and right position don't handle window height
             var directions = [
-                targetOffset.left + popupWidth + targetWidth + TAIL_SIZE + windowScrollLeft < windowWidth && 'right',
+                targetOffset.left + popupWidth + targetWidth + TAIL_SIZE < windowWidth && 'right',
                 targetOffset.left - popupWidth - TAIL_SIZE > 0 && 'left',
                 targetOffset.top + popupHeight + targetHeight + TAIL_SIZE < windowHeight && 'bottom',
-                targetOffset.top - popupHeight - TAIL_SIZE - windowScrollTop > 0 && 'top'
+                targetOffset.top - popupHeight - TAIL_SIZE > 0 && 'top'
             ].filter(Boolean);
 
             return !directions.length || $.inArray(this._direction, directions) !== -1 ?
@@ -86,23 +83,23 @@ modules.define('popup', ['i-bem__dom', 'jquery', 'bh'], function (provide, DOM, 
             switch (direction) {
                 case 'left':
                     return {
-                        top: targetOffset.top + targetHeight / 2 - popupHeight / 2,
+                        top: targetOffset.top - TAIL_SIZE,
                         left: targetOffset.left - popupWidth - TAIL_SIZE
                     };
                 case 'right':
                     return {
-                        top: targetOffset.top + targetHeight / 2 - popupHeight / 2,
+                        top: targetOffset.top - TAIL_SIZE,
                         left: targetOffset.left + targetWidth + TAIL_SIZE
                     };
                 case 'top':
                     return {
                         top: targetOffset.top - popupHeight - TAIL_SIZE,
-                        left: targetOffset.left + targetWidth / 2 - popupWidth / 2
+                        left: targetOffset.left - TAIL_SIZE
                     };
                 case 'bottom':
                     return {
                         top: targetOffset.top + targetHeight + TAIL_SIZE,
-                        left: targetOffset.left + targetWidth / 2 - popupWidth / 2
+                        left: targetOffset.left - TAIL_SIZE
                     };
             }
         },
