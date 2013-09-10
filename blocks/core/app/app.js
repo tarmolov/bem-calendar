@@ -86,6 +86,14 @@ modules.define(
         },
 
         /**
+         * Returns component manager
+         * @returns {ComponentManager} componentManager
+         */
+        getComponentManager: function () {
+            return this._componentManager;
+        },
+
+        /**
          * Returns application model
          * @returns {Model} model
          */
