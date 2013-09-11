@@ -62,5 +62,9 @@ Then open the link in your [favorite browser](http://browser.yandex.com/):
 http://localhost:8080/test/test.html
 ```
 
+Or you can look at screenshoots generated using [BrowserStack](http://www.browserstack.com/):
+  * [The start screen](http://www.browserstack.com/screenshots/18d918bb9bb188f9df08b436be34835ad01735f7).
+  * [With opened popups](http://www.browserstack.com/screenshots/0742d8374fe1836f15e8774719e465a2adade766).
+
 ## Contribution
 See [Contribution guide](CONTRIBUTION.md) for more information.

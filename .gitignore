@@ -2,6 +2,7 @@
 node_modules/
 pages/*/*.*
 !pages/*/*.bemjson.js
+!pages/*/*.md
 test/*
 !test/blocks
 !test/test.html
