@@ -33,7 +33,7 @@ modules.define(
 
             this._element = null;
             this._view = null;
-        },
+        }
     }, {
         getName: function () {
             return 'search';

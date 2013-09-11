@@ -18,6 +18,8 @@ modules.define(
         onSetMod: {
             js: {
                 inited: function () {
+                    // Similar to http://bugs.jquery.com/ticket/6949
+                    this.domElem.css('position', 'absolute');
                     this._direction = this.params.direction || 'bottom';
                     this.bindTo(this.elem('close'), 'click', this.hide, this);
                 }
@@ -52,7 +54,7 @@ modules.define(
             var direction = this._getDirection();
             this.setMod('direction', direction);
             var offset = this._getOffset(direction);
-            this.domElem.css(offset);
+            this.domElem.offset(offset);
         },
 
         _getDirection: function () {
@@ -127,9 +129,6 @@ modules.define(
         create: function (options) {
             return DOM.init($(bh.apply({
                 block: 'popup',
-                mods: {
-                    'has-close': 'yes'
-                },
                 js: {
                     direction: options.direction
                 },

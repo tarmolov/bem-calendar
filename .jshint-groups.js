@@ -21,12 +21,12 @@ module.exports = {
                 predef: ['modules']
             },
             includes: [
-                'blocks/{common,components,core,}/**/*.js',
+                'blocks/{common,components,core}/**/*.js',
                 'pages/*/blocks/**/*.js'
             ],
             excludes: [
                 'blocks/vendors/**',
-                'blocks/{common,components,core,}/**/*.{bh,deps,test}.js',
+                'blocks/{common,components,core}/**/*.{bh,deps,test}.js',
                 'pages/*/blocks/**/*.{bh,deps,test}.js'
             ]
         },

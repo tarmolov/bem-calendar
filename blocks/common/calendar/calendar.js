@@ -224,7 +224,7 @@ modules.define(
             return {
                 block: 'calendar',
                 content: {
-                    elem: 'content',
+                    elem: 'content'
                 }
             };
         }

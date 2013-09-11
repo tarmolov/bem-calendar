@@ -8,7 +8,7 @@ modules.define('i-bem__dom', function (provide, DOM) {
 
         getValue: function () {
             return this.domElem.val();
-        },
+        }
 
     });
 

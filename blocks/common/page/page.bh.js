@@ -15,6 +15,13 @@ module.exports = function (bh) {
                                     attrs: {charset: 'utf-8'}
                                 },
                                 {
+                                    elem: 'meta',
+                                    attrs: {
+                                        'http-equiv': 'X-UA-Compatible',
+                                        content: 'IE=Edge'
+                                    }
+                                },
+                                {
                                     elem: 'title',
                                     content: ctx.param('title')
                                 },
