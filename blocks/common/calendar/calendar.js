@@ -21,10 +21,11 @@ modules.define(
     var COLLS_NUMBER = 7;
 
     function getEventsJSON(events) {
+        // Show only first event
         return events.length ?
             events.map(function (event) {
                 return EventView.getBEMJSON(event);
-            }) :
+            })[0] :
             '';
     }
 
