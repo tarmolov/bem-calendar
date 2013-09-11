@@ -1,4 +1,4 @@
-modules.define('page', ['i-bem__dom'], function (provide, DOM) {
+modules.define('page', ['i-bem__dom', 'jquery'], function (provide, DOM, $) {
 
     provide(DOM.decl('page', {
         onSetMod: {
@@ -9,8 +9,8 @@ modules.define('page', ['i-bem__dom'], function (provide, DOM) {
                     var manager = app.getComponentManager();
 
                     // Open popups
+                    $(manager.getComponent('calendar')._view.elem('cell')[3]).click();
                     manager.getComponent('toolbar')._view.findBlockInside('add', 'button').domElem.click();
-                    manager.getComponent('calendar')._view.elem('cell')[3].click();
                 }.bind(this));
             }
         },
