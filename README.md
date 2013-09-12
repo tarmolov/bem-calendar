@@ -10,7 +10,7 @@ Project based on [ideas of Nikolas Zakas](http://www.slideshare.net/nzakas/scala
 
 ### Features
   * [Static code analyser and codestyle checking with jsint and jscs](#static-code-analyser-and-codestyle-checking)
-  * [Unit tests with mocha and phantomjs](#run-tests)
+  * [More than 100 unit tests with mocha and phantomjs](#run-tests)
   * Using [git hooks](http://github.com/tarmolov/git-hooks) to lint your code, run tests, and auto sorting css rules before each commit
   * CI using [travis](https://travis-ci.org/tarmolov/bem-calendar): lint javascript code and  run tests after each push, then publish a new version of calendar to gh-pages if all tests has been passed
 
