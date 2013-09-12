@@ -32,15 +32,13 @@ modules.define(
                     this.findBlockOn(this.elem('left'), 'button').on('click', this._onPrevClick, this);
                     this.findBlockOn(this.elem('right'), 'button').on('click', this._onNextClick, this);
                     this.findBlockOn(this.elem('today'), 'button').on('click', this._onCurrentClick, this);
+                },
+                '': function () {
+                    this.__base.apply(this, arguments);
+                    this._model.un('change:currentDate', this.update, this);
+                    this._model = null;
                 }
             }
-        },
-
-        destruct: function () {
-            this.__base.apply(this, arguments);
-
-            this._model.un('change:currentDate', this.update, this);
-            this._model = null;
         },
 
         _onPrevClick: function () {

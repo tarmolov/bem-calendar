@@ -22,14 +22,12 @@ modules.define(
                     this.domElem.css('position', 'absolute');
                     this._direction = this.params.direction || 'bottom';
                     this.bindTo(this.elem('close'), 'click', this.hide, this);
+                },
+                '': function () {
+                    this.__base.apply(this, arguments);
+                    this.hide();
                 }
             }
-        },
-
-        destruct: function () {
-            this.__base.apply(this, arguments);
-            $(document).unbind('click', $.proxy(this._onDocumentClick, this));
-            this.hide();
         },
 
         show: function (targetNode) {

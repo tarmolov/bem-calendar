@@ -145,15 +145,13 @@ modules.define(
             js: {
                 inited: function () {
                     EventView.on(this.domElem, 'delete', this._onEventDelete, this);
+                },
+                '': function () {
+                    this.__base.apply(this, arguments);
+                    EventView.un(this.domElem, 'delete', this._onEventDelete, this);
+                    this._model = null;
                 }
             }
-        },
-
-        destruct: function () {
-            this.__base.apply(this, arguments);
-
-            EventView.un(this.domElem, 'delete', this._onEventDelete, this);
-            this._model = null;
         },
 
         _onEventDelete: function (e, eventModel) {

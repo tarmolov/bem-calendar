@@ -25,14 +25,13 @@ modules.define(
             js: {
                 inited: function () {
                     this.bindTo('click', this._onClick, this);
+                },
+                '': function () {
+                    this.__base.apply(this, arguments);
+                    this.__self.getPopup().hide();
+                    this._model.un('change', this.update, this);
                 }
             }
-        },
-
-        destruct: function () {
-            this.__base.apply(this, arguments);
-            this.__self.getPopup().hide();
-            this._model.un('change', this.update, this);
         },
 
         _onClick: function (e) {
@@ -57,7 +56,7 @@ modules.define(
          * Hide event popup
          */
         closePopup: function () {
-            this._form.destruct();
+            DOM.destruct(this._form.domElem);
             this._form = null;
             this.__self.getPopup().hide();
         },
