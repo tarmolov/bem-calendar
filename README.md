@@ -6,6 +6,31 @@ Project based on [ideas of Nikolas Zakas](http://www.slideshare.net/nzakas/scala
 
 ## [View demo](http://tarmolov.github.io/bem-calendar/pages/calendar/calendar.html)
 
+## What is inside?
+
+### Features
+  * [Static code analyser and codestyle checking with jsint and jscs](#static-code-analyser-and-codestyle-checking)
+  * [Unit tests with mocha and phantomjs](#run-tests)
+  * Using [git hooks](http://github.com/tarmolov/git-hooks) to lint your code, run tests, and auto sorting css rules before each commit
+  * CI using [travis](https://travis-ci.org/tarmolov/bem-calendar): lint javascript code and  run tests after each push, then publish a new version of calendar to gh-pages if all tests has been passed
+
+### Methodologies, libraries, and frameworks
+  * [BEM](http://bem.info/) — a Block-Element-Modifier methodology for developing frontend
+  * [bh](https://github.com/enb-make/bh) — a templates engine for BEM methodology
+  * [ymaps modules](https://github.com/ymaps/modules) — a modules system
+  * [express](http://expressjs.com/) — a web application framework for node
+  * [vow](https://github.com/dfilatov/jspromise) — the fastest Promise/A+ implementation
+  * [inherit](https://github.com/dfilatov/node-inherit) — an inheritance syntax sugar
+
+### Tools
+  * [enb](http://enb-make.info) — the fastest builder for BEM projects
+  * [borschik](https://github.com/bem/borschik) — an extendable builder for text-based file formats (css and javascript, for example)
+  * [jshint-groups](https://github.com/ikokostya/jshint-groups) — a [JSHint](jshint.com) wrapper allowing validate filesets with different jshint options
+  * [jscs](https://github.com/mdevils/node-jscs) — a code style checker for javascript
+  * [csscomb](https://github.com/csscomb/csscomb.js) — a coding style formatter for CSS
+  * [git-hooks](https://github.com/icefox/git-hooks) — a tool for git hooks managment
+  * [mocha](http://visionmedia.github.io/mocha/) + [chai](http://chaijs.com/) + [sinon](http://sinonjs.org/) + [phantomjs](http://phantomjs.org/) — testing client javascript
+
 ## Project structure
 ```
 .bem                ENB config for building project
