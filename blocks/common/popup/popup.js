@@ -18,7 +18,8 @@ modules.define(
         onSetMod: {
             js: {
                 inited: function () {
-                    // Similar to http://bugs.jquery.com/ticket/6949
+                    // IE sets position=relative for popup
+                    // Maybe similar to http://bugs.jquery.com/ticket/6949
                     this.domElem.css('position', 'absolute');
                     this._direction = this.params.direction || 'bottom';
                     this.bindTo(this.elem('close'), 'click', this.hide, this);
@@ -30,12 +31,19 @@ modules.define(
             }
         },
 
+        /**
+         * Shows popup
+         * @param {jQuery} targetNode A html node when popup should be shown
+         */
         show: function (targetNode) {
             this._targetNode = targetNode;
             this.domElem.appendTo('body');
             this._updatePosition();
         },
 
+        /**
+         * Hides popup
+         */
         hide: function () {
             this.domElem.offset({
                 top: -10000,
@@ -43,11 +51,18 @@ modules.define(
             });
         },
 
+        /**
+         * Returns current visiblity of popup
+         * @returns {Boolean} isShown
+         */
         isShown: function () {
             var offset = this.domElem.offset();
             return offset.top !== -10000 && offset.left !== -10000;
         },
 
+        /**
+         * Repositions popup
+         */
         _updatePosition: function () {
             var direction = this._getDirection();
             this.setMod('direction', direction);
@@ -55,6 +70,11 @@ modules.define(
             this.domElem.offset(offset);
         },
 
+        /**
+         * Returns popup directon
+         * Uses specified direction or any available
+         * @returns {String} direction
+         */
         _getDirection: function () {
             var domElem = this.domElem;
             var popupWidth = domElem.outerWidth();
@@ -81,6 +101,11 @@ modules.define(
                 directions[0];
         },
 
+        /**
+         * Returns popup offset
+         * @param {String} direction
+         * @returns {Object} offset
+         */
         _getOffset: function (direction) {
             var domElem = this.domElem;
 
@@ -116,6 +141,10 @@ modules.define(
             }
         },
 
+        /**
+         * Sets popup content
+         * @param {BEMDOM} content
+         */
         setContent: function (content) {
             this.hide();
             DOM.update(this.findElem('content'), content.domElem);
@@ -125,7 +154,12 @@ modules.define(
         }
     }, {
         create: function (options) {
-            return DOM.init($(bh.apply({
+            var bemjson = this.getBEMJSON(options);
+            return DOM.init($(bh.apply(bemjson))).bem(this.getName());
+        },
+
+        getBEMJSON: function (options) {
+            return {
                 block: 'popup',
                 js: {
                     direction: options.direction
@@ -134,7 +168,7 @@ modules.define(
                     elem: 'content',
                     content: options.content
                 }
-            }))).bem(this.getName());
+            };
         }
     }));
 
