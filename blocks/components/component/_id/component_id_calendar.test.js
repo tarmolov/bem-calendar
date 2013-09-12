@@ -48,15 +48,6 @@ modules.define(
                 update.callCount.should.equal(1);
             });
         });
-
-        describe('when sandbox emitted new-event', function () {
-            it('should open popup for this event', function () {
-                component.start(sandbox);
-                var update = sinon.spy(component._view, 'openPopup');
-                sandbox.emit('new-event', new Model({}));
-                update.callCount.should.equal(1);
-            });
-        });
     });
 
     provide();

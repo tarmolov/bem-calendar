@@ -74,6 +74,7 @@ module.exports = function (config) {
             getLevels(),
 
             [
+                'test/blocks/common',
                 'test/blocks/components'
             ],
 

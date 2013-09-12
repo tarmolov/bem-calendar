@@ -106,9 +106,8 @@ modules.define(
     }
 
     function getRowsJSON(model) {
-        var now = (new Date()).getTime();
-        var currentDate = dateUtils.normalize(new Date(model.get('currentDate') || now), true);
-        var selectedDate = dateUtils.normalize(new Date(model.get('selectedDate') || now));
+        var currentDate = dateUtils.normalize(new Date(model.get('currentDate')), true);
+        var selectedDate = dateUtils.normalize(new Date(model.get('selectedDate')));
         var events = model.get('events') || [];
         var daysFromPrevMonth = getDaysFromPrevMonth(currentDate);
         var date = getStartDate(currentDate, daysFromPrevMonth);
@@ -161,6 +160,9 @@ modules.define(
             this._model.get('events').remove(eventModel);
         },
 
+        /**
+         * Adds new event in calendar
+         */
         _onCellClick: function (e) {
             var options = this.elemParams($(e.currentTarget));
             var model = new Model(options);
@@ -168,6 +170,11 @@ modules.define(
             this.openPopup(model, true);
         },
 
+        /**
+         * Opens popup for event by model
+         * @param {Model} model Event model
+         * @param {Boolean} disableAutoSwitching Disable autoswitching to month in the model
+         */
         openPopup: function (model, disableAutoSwitching) {
             if (!disableAutoSwitching) {
                 var eventDate = dateUtils.normalize(new Date(model.get('date')), true);
@@ -189,7 +196,24 @@ modules.define(
 
         setModel: function (model) {
             this._model = model;
+            if (this._model) {
+                this._model.un('change', this.update, this);
+            }
+            this._model.on('change', this.update, this);
             this.update();
+        },
+
+        _setModelsToEvents: function () {
+            var events = this._model.get('events');
+            this.findBlocksInside('event').forEach(function (eventView) {
+                var model = events.filter(function (event) {
+                    return eventView.params.date === event.get('date');
+                })[0];
+
+                if (model) {
+                    eventView.setModel(model);
+                }
+            });
         },
 
         update: function () {
@@ -201,16 +225,7 @@ modules.define(
                 content: bemjson
             }));
 
-            var events = this._model.get('events');
-            this.findBlocksInside('event').forEach(function (eventView) {
-                var model = events.filter(function (event) {
-                    return eventView.params.date === event.get('date');
-                })[0];
-
-                if (model) {
-                    eventView.setModel(model);
-                }
-            });
+            this._setModelsToEvents();
             this.bindTo(this.findElem('cell'), 'click', this._onCellClick);
         }
     }, {
