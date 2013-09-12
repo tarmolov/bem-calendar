@@ -36,10 +36,10 @@ module.exports = function (config) {
     config.node('test', function (nodeConfig) {
         nodeConfig.addTechs([
             require('enb/techs/files'),
-            [require('enb/techs/levels'), {levels: getTestLevels()}],
+            [require('enb/techs/levels'), {levels: getLevels()}],
             [require('enb/techs/bemdecl-test'), {target: 'test.bemdecl.js'}],
             [require('enb/techs/js-test'), {fileMask: getTestFileMask()}],
-            require('enb-modules/techs/deps-with-modules'),
+            [require('enb-modules/techs/deps-with-modules'), {sourceSuffixes: ['vanilla.js', 'js', 'test.js']}],
             [require('enb/techs/browser-js'), {target: '?.browser.js'}],
             [require('bh/techs/bh-client-module'), {target: '?.bh.client.js', jsAttrName: 'data-bem', jsAttrScheme: 'json' }],
             [require('enb-modules/techs/prepend-modules'), {source: '?.browser.js', target: '?.modules.js'}],
@@ -65,27 +65,6 @@ module.exports = function (config) {
             'blocks/core',
             'blocks/components'
         ].map(config.resolvePath.bind(config));
-    }
-
-    function getTestLevels() {
-        var fs = require('fs');
-
-        return [].concat(
-            getLevels(),
-
-            [
-                'test/blocks/common',
-                'test/blocks/components'
-            ],
-
-            // Collect tests from all pages levels
-            fs.readdirSync('pages')
-                .map(function (page) {
-                    var level = 'pages/%s/blocks'.replace('%s', page);
-                    return fs.existsSync(level) && config.resolvePath(level);
-                })
-                .filter(Boolean)
-        );
     }
 
     function getTestFileMask() {
