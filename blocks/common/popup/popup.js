@@ -85,7 +85,7 @@ modules.define(
             var targetWidth = targetNode.outerWidth();
             var targetHeight = targetNode.outerHeight();
 
-            var win = $(window);
+            var win = this.__self.win;
             var windowWidth = win.width();
             var windowHeight = win.height();
 
@@ -143,11 +143,16 @@ modules.define(
 
         /**
          * Sets popup content
-         * @param {BEMDOM} content
+         * @param {BEMDOM|String} content
          */
         setContent: function (content) {
             this.hide();
-            DOM.update(this.findElem('content'), content.domElem);
+            DOM.update(
+                this.findElem('content'),
+                typeof content === 'string' ?
+                    content :
+                    content.domElem
+            );
             if (this._targetNode) {
                 this._updatePosition();
             }
