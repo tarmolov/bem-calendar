@@ -10,7 +10,8 @@ modules.define(
         'component_id_search',
         'component_id_navigation',
         'component_id_calendar',
-        'component_id_sync'
+        'component_id_sync',
+        'jquery'
     ],
     function (
         provide,
@@ -23,7 +24,8 @@ modules.define(
         Search,
         Navigation,
         Calendar,
-        Sync
+        Sync,
+        $
     ) {
 
     /**
@@ -72,6 +74,7 @@ modules.define(
         /**
          * Returns placeholder for component.
          * Component uses this placeholder for building its layout.
+         * Fallback is empty unattched node.
          * @param {String} id Component ID
          * @returns {jQuery} placeholder
          */
@@ -82,7 +85,9 @@ modules.define(
                 modVal: id
             });
 
-            return placeholder && placeholder.domElem;
+            return placeholder ?
+                placeholder.domElem :
+                $('<div/>');
         },
 
         /**
