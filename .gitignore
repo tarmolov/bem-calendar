@@ -1,5 +1,6 @@
 .bem/tmp
 node_modules/
+doc/uml/*.vpp~*
 pages/*/*.*
 !pages/*/*.bemjson.js
 !pages/*/*.md

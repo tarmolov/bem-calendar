@@ -35,7 +35,7 @@ modules.define(
      */
     provide(inherit({
         /**
-         * @param {jQuery} rootBlock Root DOM node for application
+         * @param {BEMDOM} rootBlock Root block for application
          */
         __constructor: function (rootBlock) {
             this._rootBlock = rootBlock;

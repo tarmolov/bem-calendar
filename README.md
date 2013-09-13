@@ -2,7 +2,7 @@
 
 This is [the assigment](doc/issue/README.en.md) for entering Frontend Developer School by [hh.ru](http://hh.ru/locale.do?language=EN).
 
-Project based on [ideas of Nikolas Zakas](http://www.slideshare.net/nzakas/scalable-javascript-application-architecture) and developed using [BEM methodology](http://bem.info).
+Project based on [ideas of Nikolas Zakas](http://www.slideshare.net/nzakas/scalable-javascript-application-architecture) and developed using [BEM methodology](http://bem.info). Also you can look at [UML diagrams](doc/uml/README.md) for the project.
 
 ## [View demo](http://tarmolov.github.io/bem-calendar/pages/calendar/calendar.html)
 
