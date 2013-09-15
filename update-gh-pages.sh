@@ -14,7 +14,8 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
 
     cd deploy
     git add -A
-    git commit -m "update doc"
     git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
     git push origin gh-pages
+    
+    echo -e "Finishing to update gh-pages\n"
 fi
