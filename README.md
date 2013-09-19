@@ -22,8 +22,6 @@ See also [UML diagrams](doc/uml/README.md) for the project.
   * [bem-core](https://github.com/bem/bem-core/) — a base library for web interface development
   * [bh](https://github.com/enb-make/bh) — a templates engine for BEM methodology
   * [ymaps modules](https://github.com/ymaps/modules) — a modules system
-  * [express](http://expressjs.com/) — a web application framework for node
-  * [vow](https://github.com/dfilatov/jspromise) — the fastest Promise/A+ implementation
   * [inherit](https://github.com/dfilatov/node-inherit) — an inheritance syntax sugar
 
 ### Tools
