@@ -1,6 +1,6 @@
 # BEM Calendar [![Build Status](https://travis-ci.org/tarmolov/bem-calendar.png?branch=master)](https://travis-ci.org/tarmolov/bem-calendar)
 
-This is [the assigment](doc/issue/README.en.md) for entering Frontend Developer School by [hh.ru](http://hh.ru/locale.do?language=EN).
+This is [the assigment](doc/issue/README.md) for entering Frontend Developer School by [hh.ru](http://hh.ru/locale.do?language=EN).
 
 Project based on [ideas of Nikolas Zakas](http://www.slideshare.net/nzakas/scalable-javascript-application-architecture) and developed using [BEM methodology](http://bem.info).
 
