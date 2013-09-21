@@ -3,7 +3,7 @@ The assigment for entering HeadHunter school
 
 The calendar page should be made according mockups below:
 
-![Main view](mockups/Calendar-HW-01.png)
+![Main view](__mockup/_type/issue__mockup_type_main.png)
 
 ### Requirements
 
@@ -21,16 +21,16 @@ The calendar page should be made according mockups below:
 ### Examples of extra logic for the calendar:
 
 Form for quick adding a new event:
-![Form for quick adding a new event](mockups/Calendar-HW-02.png)
+![Form for quick adding a new event](__mockup/_type/issue__mockup_type_toolbar.png)
 
 When the event has been added the popup with details should be opened:
-![When the event has been added the popup with details should be oppened](mockups/Calendar-HW-03.png)
+![When the event has been added the popup with details should be oppened](__mockup/_type/issue__mockup_type_event-popup-with-name.png)
 
 The participants has been added:
-![The participants has been added](mockups/Calendar-HW-04.png)
+![The participants has been added](__mockup/_type/issue__mockup_type_event-popup-with-participants.png)
 
 Add an event by click on the calendar cell:
-![ДAdd an event by click on the calendar cell](mockups/Calendar-HW-05.png)
+![ДAdd an event by click on the calendar cell](__mockup/_type/issue__mockup_type_event-popup.png)
 
 Search:
-![Search](mockups/Calendar-HW-07.png)
+![Search](__mockup/_type/issue__mockup_type_search.png)

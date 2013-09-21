@@ -3,7 +3,7 @@
 
 Необходимо сверстать страницу календаря в соотвествии с макетом ниже:
 
-![Общий вид приложения](mockups/Calendar-HW-01.png)
+![Общий вид приложения](__mockup/_type/issue__mockup_type_main.png)
 
 ### Требования
 
@@ -21,16 +21,16 @@
 ### Примеры дополнительной логики работы:
 
 Быстрое добавление события:
-![Быстрое добавление события](mockups/Calendar-HW-02.png)
+![Быстрое добавление события](__mockup/_type/issue__mockup_type_toolbar.png)
 
 После быстрого добавления открываем попап с подробностями:
-![После быстрого добавления открываем попап с подробностями](mockups/Calendar-HW-03.png)
+![После быстрого добавления открываем попап с подробностями](__mockup/_type/issue__mockup_type_event-popup-with-name.png)
 
 Добавили участников:
-![Добавили участников](mockups/Calendar-HW-04.png)
+![Добавили участников](__mockup/_type/issue__mockup_type_event-popup-with-participants.png)
 
 Добавление событя при клике на квадрат даты:
-![Добавление событя при клике на квадрат даты](mockups/Calendar-HW-05.png)
+![Добавление событя при клике на квадрат даты](__mockup/_type/issue__mockup_type_event-popup.png)
 
 Поиск:
-![Поиск](mockups/Calendar-HW-07.png)
+![Поиск](__mockup/_type/issue__mockup_type_search.png)
