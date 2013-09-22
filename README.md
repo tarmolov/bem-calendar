@@ -4,7 +4,7 @@ This is [the assigment](doc/issue/README.md) for entering Frontend Developer Sch
 
 Project based on [ideas of Nikolas Zakas](http://www.slideshare.net/nzakas/scalable-javascript-application-architecture) and developed using [BEM methodology](http://bem.info).
 
-See also [UML diagrams](doc/uml/README.md) for the project.
+See [my blog post](http://tarmolov.ru/blog/bem-calendar/) for more information.
 
 ## [View demo](http://tarmolov.github.io/bem-calendar/pages/calendar/calendar.html)
 
