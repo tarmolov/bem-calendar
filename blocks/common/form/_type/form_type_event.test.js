@@ -52,6 +52,12 @@ modules.define(
                 form.findBlockInside('delete', 'button').domElem.click();
                 onDelete.callCount.should.be.equal(1);
             });
+
+            it('should return empty state', function () {
+                form.isEmpty().should.be.true;
+                form.findBlockInside('participants', 'input').setValue('Alexander');
+                form.isEmpty().should.be.false;
+            });
         });
 
         describe('when bh has built bemjson', function () {

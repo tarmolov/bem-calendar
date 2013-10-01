@@ -1,4 +1,4 @@
-modules.define('page', ['i-bem__dom'], function (provide, DOM) {
+modules.define('page', ['i-bem__dom', 'jquery'], function (provide, DOM, $) {
 
     provide(DOM.decl('page', {
         onSetMod: {
@@ -6,6 +6,10 @@ modules.define('page', ['i-bem__dom'], function (provide, DOM) {
                 modules.require(['app'], function (Application) {
                     /*jshint unused:false*/
                     var app = new Application(this);
+
+                    $(window).unload(function () {
+                        app.destruct();
+                    });
                 }.bind(this));
             }
         },

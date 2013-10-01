@@ -32,7 +32,7 @@ modules.define(
         },
 
         _onCreateClick: function () {
-            var str = this.findBlockInside('title', 'input').getValue();
+            var str = this._getInputValue();
             // Format: [<month> ]<date>[, <title>]
             var matches = str.match(/(?:(\w+)\s+)*(\d+)(?:\W+(\w+))*/);
             if (matches) {
@@ -45,6 +45,14 @@ modules.define(
                     title: matches[3]
                 }));
             }
+        },
+
+        isEmpty: function () {
+            return !Boolean(this._getInputValue());
+        },
+
+        _getInputValue: function () {
+            return this.findBlockInside('title', 'input').getValue().trim();
         }
     }, {
         getBEMJSON: function (model, options) {

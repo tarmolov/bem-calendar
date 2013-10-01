@@ -64,6 +64,12 @@ modules.define(
                 form.domElem.submit();
                 onCreate.callCount.should.be.equal(0);
             });
+
+            it('should return empty state', function () {
+                form.isEmpty().should.be.true;
+                form.findBlockInside('title', 'input').setValue('September 5, Birthday');
+                form.isEmpty().should.be.false;
+            });
         });
 
         describe('when bh has built bemjson', function () {

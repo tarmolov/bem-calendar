@@ -50,15 +50,25 @@ modules.define(
 
             this._form.on('save', this._onSave, this);
             this._form.on('delete', this._onDelete, this);
+
+            this.__self.getPopup().on('hide', this._onPopupHide, this);
         },
 
         /**
          * Hide event popup
          */
         closePopup: function () {
+            this.__self.getPopup().hide();
+            this.__self.getPopup().un('hide', this._onPopupHide, this);
+
             DOM.destruct(this._form.domElem);
             this._form = null;
-            this.__self.getPopup().hide();
+        },
+
+        _onPopupHide: function () {
+            if (this._form && this._form.domElem && this._form.isEmpty()) {
+                this.emit('delete', this._model);
+            }
         },
 
         _onSave: function () {

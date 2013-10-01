@@ -14,6 +14,13 @@ modules.define('i-bem__dom', ['jquery', 'bh'], function (provide, $, bh, DOM) {
             this.emit('submit');
         },
 
+        /**
+         * Check form state.
+         * Returns false if the form isn't filled
+         * @return {Boolean}
+         */
+        isEmpty: function () {},
+
         update: function () {},
 
         getModel: function () {

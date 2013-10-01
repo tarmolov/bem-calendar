@@ -60,7 +60,9 @@ modules.define(
             event.domElem.click();
             Event.getPopup().findBlockInside('form').findBlockInside('delete', 'button').domElem.click();
             Event.getPopup().isShown().should.be.false;
-            onDelete.callCount.should.be.equal(1);
+
+            // One event after delete click and second one — after checking form with isEmpty
+            onDelete.callCount.should.be.equal(2);
         });
 
         it('should contains title and participants elems', function () {
@@ -72,6 +74,16 @@ modules.define(
             var popup1 = Event.getPopup();
             var popup2 = Event.getPopup();
             popup1.should.be.equal(popup2);
+        });
+
+        it('should trigger delete event after closing empty form', function () {
+            var onDelete = sinon.spy();
+            event.on('delete', onDelete);
+            event.openPopup();
+
+            Event.getPopup().hide();
+
+            onDelete.callCount.should.be.equal(1);
         });
     });
 

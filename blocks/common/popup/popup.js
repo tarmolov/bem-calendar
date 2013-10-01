@@ -36,19 +36,31 @@ modules.define(
          * @param {jQuery} targetNode A html node when popup should be shown
          */
         show: function (targetNode) {
+            var isShown = this.isShown();
+
             this._targetNode = targetNode;
             this.domElem.appendTo('body');
             this._updatePosition();
+
+            if (!isShown) {
+                this.trigger('show');
+            }
         },
 
         /**
          * Hides popup
          */
         hide: function () {
+            var isShown = this.isShown();
+
             this.domElem.offset({
                 top: -10000,
                 left: -10000
             });
+
+            if (isShown) {
+                this.trigger('hide');
+            }
         },
 
         /**

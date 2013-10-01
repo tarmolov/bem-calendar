@@ -147,9 +147,11 @@ modules.define(
                     EventView.on(this.domElem, 'delete', this._onEventDelete, this);
                 },
                 '': function () {
-                    this.__base.apply(this, arguments);
+                    EventView.getPopup().hide();
                     EventView.un(this.domElem, 'delete', this._onEventDelete, this);
                     this._model = null;
+
+                    this.__base.apply(this, arguments);
                 }
             }
         },
@@ -164,6 +166,7 @@ modules.define(
         _onCellClick: function (e) {
             var options = this.elemParams($(e.currentTarget));
             var model = new Model(options);
+            EventView.getPopup().hide();
             this._model.get('events').add(model);
             this.openPopup(model, true);
         },

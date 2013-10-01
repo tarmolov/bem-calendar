@@ -42,6 +42,12 @@ modules.define(
             this.emit('delete');
         },
 
+        isEmpty: function () {
+            return ['title', 'participants', 'description'].every(function (key) {
+                return !Boolean(this.findBlockInside(key, 'input').getValue().trim());
+            }, this);
+        },
+
         update: function () {
             this.__base.apply(this, arguments);
             var date = new Date(this._model.get('date'));
