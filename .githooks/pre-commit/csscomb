@@ -23,6 +23,6 @@ git checkout -- .
 
 git_cached_css=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.css$' | xargs echo)
 if [ "$git_cached_css" ]; then
-    $NPM_BIN/csscomb .
+    $NPM_BIN/csscomb $git_cached_files
     git add $git_cached_css
 fi
