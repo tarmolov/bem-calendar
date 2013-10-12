@@ -61,6 +61,7 @@ module.exports = function (config) {
         return [
             'blocks/vendors/bem-core/common.blocks',
             'blocks/vendors/bem-core/desktop.blocks',
+            'blocks/vendors/bem-aib/common.blocks',
             'blocks/common',
             'blocks/core',
             'blocks/components'
