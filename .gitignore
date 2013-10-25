@@ -1,7 +1,8 @@
+.DS_Store
 .bem/tmp
 node_modules/
-doc/uml/*.vpp~*
-doc/uml/*.vpp.working
+doc/uml/__source/*.vpp~*
+doc/uml/__source/*.vpp.working
 pages/*/*.*
 !pages/*/*.bemjson.js
 !pages/*/*.md
