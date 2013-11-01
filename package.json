@@ -7,7 +7,7 @@
         "node": ">= 0.8.0"
     },
     "dependencies": {
-        "bem-core": "git://github.com/bem/bem-core.git#v1",
+        "bem-core": "git://github.com/bem/bem-core.git#v1.0.0",
         "bem-aib": "git://github.com/tarmolov/bem-aib.git",
         "bh": "0.1.19",
         "ym": "0.0.9"
