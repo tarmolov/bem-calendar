@@ -31,7 +31,7 @@ See [my blog post](http://tarmolov.ru/blog/bem-calendar/) for more information.
   * [jscs](https://github.com/mdevils/node-jscs) — a code style checker for javascript
   * [csscomb](https://github.com/csscomb/csscomb.js) — a coding style formatter for CSS
   * [git-hooks](https://github.com/icefox/git-hooks) — a tool for git hooks managment
-  * [mocha](http://visionmedia.github.io/mocha/) + [chai](http://chaijs.com/) + [sinon](http://sinonjs.org/) + [phantomjs](http://phantomjs.org/) — testing client javascript
+  * [mocha](http://mochajs.org/) + [chai](http://chaijs.com/) + [sinon](http://sinonjs.org/) + [phantomjs](http://phantomjs.org/) — testing client javascript
 
 ## Project structure
 ```
